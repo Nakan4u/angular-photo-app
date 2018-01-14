@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../search.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SearchService, SearchItem } from '../search.service';
 
 @Component({
   selector: 'app-search-form',
@@ -7,8 +7,8 @@ import { SearchService } from '../search.service';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-  private loading: boolean = false;
-  private photos: any = [];
+  @Output() onSearchFinished = new EventEmitter<SearchItem[]>();
+  @Output() changeLoadingState = new EventEmitter<boolean>();
 
   constructor(private photosService:SearchService) { }
 
@@ -17,11 +17,12 @@ export class SearchFormComponent implements OnInit {
 
   doSearch(term:string, event) {
     event.preventDefault();
-    this.loading = true;
+    this.changeLoadingState.emit(true);
+
     this.photosService.search(term)
-      .then(results => {
-        this.photos = results;
-        this.loading = false;
+      .then((results: SearchItem[]) => {
+        this.changeLoadingState.emit(false);
+        this.onSearchFinished.emit(results);
       })
   }
 

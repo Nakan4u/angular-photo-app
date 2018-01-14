@@ -1,0 +1,9 @@
+<ul class="list-group" *ngIf="results">
+  <li class="list-group-item" *ngFor="let item of results">
+    <a href="{{item.pageURL}}" target="_blank">
+      <img src="{{item.previewURL}}" alt="{{item.tags}}" width="{{item.previewWidth}}" height="{{item.previewHeight}}">
+    </a>
+    <br>
+    <p>{{item.tags}}</p>
+  </li>
+</ul>

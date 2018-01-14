@@ -19,11 +19,21 @@ export class SearchService {
       let params = new URLSearchParams();
       params.set('q', term);
       params.set('per_page', '10');
-      this.http.get(this.apiRoot, {params})
+      this.http.get(this.apiRoot, { params })
         .toPromise()
         .then(res => { // Success
+          var results;
           console.log(res.json());
-          resolve(res.json().hits);
+          results = res.json().hits.map(item => { 
+            return new SearchItem(
+                item.pageURL,
+                item.previewURL,
+                item.previewWidth,
+                item.previewHeight,
+                item.tags
+            );
+          });
+          resolve(results);
         })
         .catch(msg => { // Error
           reject(msg);
@@ -31,4 +41,14 @@ export class SearchService {
     });
     return promise;
   }
+}
+
+export class SearchItem {
+  constructor(
+    public pageURL: string,
+    public previewURL: string,
+    public previewWidth: string,
+    public previewHeight: string,
+    public tags: string
+  ) {}
 }

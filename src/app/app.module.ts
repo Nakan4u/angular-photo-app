@@ -6,12 +6,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchService } from './search.service';
+import { HeaderComponent } from './header/header.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    HeaderComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
