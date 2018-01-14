@@ -4,17 +4,20 @@ import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { SearchService } from './search.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,
     HttpModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
