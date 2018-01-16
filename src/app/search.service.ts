@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -14,32 +16,23 @@ export class SearchService {
     this.loading = false;
   }
 
-  search(term: string) {
-    let promise = new Promise((resolve, reject) => {
-      let params = new URLSearchParams();
-      params.set('q', term);
-      params.set('per_page', '10');
-      this.http.get(this.apiRoot, { params })
-        .toPromise()
-        .then(res => { // Success
-          var results;
-          console.log(res.json());
-          results = res.json().hits.map(item => { 
-            return new SearchItem(
-                item.pageURL,
-                item.previewURL,
-                item.previewWidth,
-                item.previewHeight,
-                item.tags
-            );
-          });
-          resolve(results);
-        })
-        .catch(msg => { // Error
-          reject(msg);
+  search(term: string): Observable<SearchItem[]> {
+    let params = new URLSearchParams();
+    params.set('q', term);
+    params.set('per_page', '10');
+
+    return this.http.get(this.apiRoot, { params })
+      .map(res => {
+        return res.json().hits.map(item => {
+          return new SearchItem(
+            item.pageURL,
+            item.previewURL,
+            item.previewWidth,
+            item.previewHeight,
+            item.tags
+          );
         });
-    });
-    return promise;
+      });
   }
 }
 
@@ -50,5 +43,5 @@ export class SearchItem {
     public previewWidth: string,
     public previewHeight: string,
     public tags: string
-  ) {}
+  ) { }
 }

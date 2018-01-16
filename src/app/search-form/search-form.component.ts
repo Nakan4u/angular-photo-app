@@ -1,5 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchService, SearchItem } from '../search.service';
+import {FormControl} from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'app-search-form',
@@ -9,21 +14,20 @@ import { SearchService, SearchItem } from '../search.service';
 export class SearchFormComponent implements OnInit {
   @Output() onSearchFinished = new EventEmitter<SearchItem[]>();
   @Output() changeLoadingState = new EventEmitter<boolean>();
+  private searchField: FormControl;
 
   constructor(private photosService:SearchService) { }
 
   ngOnInit() {
-  }
+    this.searchField = new FormControl();
 
-  doSearch(term:string, event) {
-    event.preventDefault();
-    this.changeLoadingState.emit(true);
-
-    this.photosService.search(term)
-      .then((results: SearchItem[]) => {
-        this.changeLoadingState.emit(false);
-        this.onSearchFinished.emit(results);
-      })
+    this.searchField.valueChanges
+      .debounceTime(1000)
+      .distinctUntilChanged()
+      .do( () => this.changeLoadingState.emit(true))
+      .switchMap( term => this.photosService.search(term))
+      .do( () => this.changeLoadingState.emit(false))
+      .subscribe( value => this.onSearchFinished.emit(value));
   }
 
 }
