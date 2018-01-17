@@ -1,12 +1,4 @@
 <div class="col-md-12">
   <app-header></app-header>
-  <app-search-form 
-    (onSearchFinished)="onSearchFinished($event)" 
-    (changeLoadingState)="changeLoadingState($event)">
-  </app-search-form>
-  <div class="text-center">
-    <p class="lead" *ngIf="loading">Loading...</p>
-  </div>
-  <br>
-  <app-search-result [results]="photos"></app-search-result>
+  <router-outlet></router-outlet>
 </div>

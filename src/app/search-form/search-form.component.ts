@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchService, SearchItem } from '../search.service';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute} from "@angular/router";
+
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
@@ -16,7 +18,13 @@ export class SearchFormComponent implements OnInit {
   @Output() changeLoadingState = new EventEmitter<boolean>();
   private searchField: FormControl;
 
-  constructor(private photosService:SearchService) { }
+  constructor(
+    private photosService: SearchService,
+    private router: Router,
+    private route: ActivatedRoute) {
+      
+    this.route.params.subscribe(params => this.doSearch(params['term']));
+  }
 
   ngOnInit() {
     this.searchField = new FormControl();
@@ -24,10 +32,20 @@ export class SearchFormComponent implements OnInit {
     this.searchField.valueChanges
       .debounceTime(1000)
       .distinctUntilChanged()
-      .do( () => this.changeLoadingState.emit(true))
-      .switchMap( term => this.photosService.search(term))
-      .do( () => this.changeLoadingState.emit(false))
-      .subscribe( value => this.onSearchFinished.emit(value));
+      .subscribe(value => this.onSearch(value));
+  }
+
+  doSearch(term: string) {
+    this.changeLoadingState.emit(true)
+    this.photosService.search(term)
+      .subscribe(value => {
+        this.onSearchFinished.emit(value)
+        this.changeLoadingState.emit(false)
+      });
+  }
+
+  onSearch(term:string) {
+    this.router.navigate(['search', term]); 
   }
 
 }

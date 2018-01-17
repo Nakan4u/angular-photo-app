@@ -1,10 +1,18 @@
-<header class="text-center">
+<header>
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['home']">Home</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" [routerLink]="['search']">Search</a>
+      </li>
+    </ul>
+  </nav>
   <h1>
     {{title}} powered by:
-  </h1>
-  <p>
     <a href="https://pixabay.com/">
-      <img src="https://pixabay.com/static/img/logo.svg" alt="Pixabay">
+      <img src="https://pixabay.com/static/img/logo.svg" alt="Pixabay" width="200">
     </a>
-  </p>
+  </h1>
 </header>
