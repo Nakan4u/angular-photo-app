@@ -12,14 +12,24 @@ import { HeaderComponent } from './header/header.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { IllustrationsListComponent } from './search-result/illustrations-list/illustrations-list.component';
+import { VectorGraphicsListComponent } from './search-result/vector-graphics-list/vector-graphics-list.component';
+import { PhotosListComponent } from './search-result/photos-list/photos-list.component';
 
 
 const routes:Routes = [
 	{path: '', redirectTo: 'home', pathMatch: 'full'}, 
 	{path: 'find', redirectTo: 'search'}, 
   {path: 'home', component: HomePageComponent},
-  {path: 'search', component: SearchPageComponent},
-  {path: 'search/:term', component: SearchPageComponent},
+  {path: 'search', component: SearchPageComponent,
+  // {path: 'search/:term', component: SearchPageComponent,
+    children: [
+      // {path: '', redirectTo: 'photo'},
+      {path: 'photo', component: PhotosListComponent},
+      {path: 'illustration', component: IllustrationsListComponent}, 
+      {path: 'vector', component: VectorGraphicsListComponent}, 
+    ]
+  },
   {path: '**', component: HomePageComponent}
 ];
 
@@ -30,7 +40,10 @@ const routes:Routes = [
     HeaderComponent,
     SearchResultComponent,
     HomePageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    IllustrationsListComponent,
+    VectorGraphicsListComponent,
+    PhotosListComponent
   ],
   imports: [
     BrowserModule,
