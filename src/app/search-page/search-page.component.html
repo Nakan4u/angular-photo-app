@@ -6,4 +6,10 @@
   <p class="lead" *ngIf="loading">Loading...</p>
 </div>
 <br>
+<p>Filters by type:
+  <button (click)="searchByType('photo')">photos</button>
+  <button (click)="searchByType('illustration')">illustrations</button>
+  <button (click)="searchByType('vector')">vector-graphics</button>
+</p>
+<router-outlet></router-outlet>
 <app-search-result [results]="photos"></app-search-result>

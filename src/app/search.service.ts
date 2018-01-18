@@ -16,10 +16,11 @@ export class SearchService {
     this.loading = false;
   }
 
-  search(term: string): Observable<SearchItem[]> {
+  search(term: string, type: string): Observable<SearchItem[]> {
     let params = new URLSearchParams();
     params.set('q', term);
     params.set('per_page', '10');
+    if (type) params.set('image_type', type); 
 
     return this.http.get(this.apiRoot, { params })
       .map(res => {

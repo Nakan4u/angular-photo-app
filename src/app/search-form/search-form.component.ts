@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchService, SearchItem } from '../search.service';
 import { FormControl } from '@angular/forms';
-import { Router, ActivatedRoute} from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -22,8 +22,12 @@ export class SearchFormComponent implements OnInit {
     private photosService: SearchService,
     private router: Router,
     private route: ActivatedRoute) {
-      
-    this.route.params.subscribe(params => this.doSearch(params['term']));
+
+    this.route.params.subscribe(params => {
+      if (params['term']) {
+        this.doSearch(params['term'], params['type'])
+      }
+    }); // toDo add type of searching based on query params
   }
 
   ngOnInit() {
@@ -35,17 +39,20 @@ export class SearchFormComponent implements OnInit {
       .subscribe(value => this.onSearch(value));
   }
 
-  doSearch(term: string) {
-    this.changeLoadingState.emit(true)
-    this.photosService.search(term)
-      .subscribe(value => {
-        this.onSearchFinished.emit(value)
-        this.changeLoadingState.emit(false)
-      });
+  doSearch(term: string, type: string) {
+    if (term) {
+      this.router.navigate(['search', { term, type }]);
+      this.changeLoadingState.emit(true)
+      this.photosService.search(term, type)
+        .subscribe(value => {
+          this.onSearchFinished.emit(value)
+          this.changeLoadingState.emit(false)
+        });
+    }
   }
 
-  onSearch(term:string) {
-    this.router.navigate(['search', term]); 
+  onSearch(term: string) {
+    this.router.navigate(['search', {term}]);
   }
 
 }

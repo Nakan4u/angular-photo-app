@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchItem } from '../search.service';
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-search-page',
@@ -9,10 +10,19 @@ import { SearchItem } from '../search.service';
 export class SearchPageComponent implements OnInit {
   private loading: boolean = false;
   private photos: any = [];
+  private term: string;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      if (params['term']) {
+        this.term = params['term'];
+      }
+    })
   }
 
   changeLoadingState(value: boolean) {
@@ -21,6 +31,11 @@ export class SearchPageComponent implements OnInit {
 
   onSearchFinished(results: SearchItem[]) {
     this.photos = results;
+  }
+
+  searchByType(type: string) {
+    let term = this.term;
+    this.router.navigate(['search', { term, type }]);
   }
 
 }
