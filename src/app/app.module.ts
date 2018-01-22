@@ -15,6 +15,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { IllustrationsListComponent } from './search-result/illustrations-list/illustrations-list.component';
 import { VectorGraphicsListComponent } from './search-result/vector-graphics-list/vector-graphics-list.component';
 import { PhotosListComponent } from './search-result/photos-list/photos-list.component';
+import { UserService, OnlyLoggedInUsersGuard } from './user.service';
 
 
 const routes:Routes = [
@@ -27,7 +28,7 @@ const routes:Routes = [
       // {path: '', redirectTo: 'photo'},
       {path: 'photo', component: PhotosListComponent},
       {path: 'illustration', component: IllustrationsListComponent}, 
-      {path: 'vector', component: VectorGraphicsListComponent}, 
+      {path: 'vector', component: VectorGraphicsListComponent, canActivate: [OnlyLoggedInUsersGuard]}, 
     ]
   },
   {path: '**', component: HomePageComponent}
@@ -52,7 +53,7 @@ const routes:Routes = [
     FormsModule,
     RouterModule.forRoot(routes, {useHash: true})
   ],
-  providers: [SearchService],
+  providers: [SearchService, UserService, OnlyLoggedInUsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
