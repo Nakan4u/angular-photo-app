@@ -23,7 +23,6 @@ const routes:Routes = [
 	{path: 'find', redirectTo: 'search'}, 
   {path: 'home', component: HomePageComponent},
   {path: 'search', component: SearchPageComponent,
-  // {path: 'search/:term', component: SearchPageComponent,
     children: [
       {path: 'all', redirectTo: 'photo'},
       {path: 'photo', component: PhotosListComponent},
