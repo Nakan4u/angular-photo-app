@@ -25,7 +25,7 @@ const routes:Routes = [
   {path: 'search', component: SearchPageComponent,
   // {path: 'search/:term', component: SearchPageComponent,
     children: [
-      // {path: '', redirectTo: 'photo'},
+      {path: 'all', redirectTo: 'photo'},
       {path: 'photo', component: PhotosListComponent},
       {path: 'illustration', component: IllustrationsListComponent}, 
       {path: 'vector', component: VectorGraphicsListComponent, canActivate: [OnlyLoggedInUsersGuard]}, 
