@@ -25,7 +25,7 @@ export class SearchFormComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       if (params['term']) {
-        this.doSearch(params['term'], params['type'])
+        this.doSearch(params['term'], params['type'] || 'all')
       }
     }); // toDo add type of searching based on query params
   }

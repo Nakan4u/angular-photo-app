@@ -7,9 +7,10 @@
 </div>
 <br>
 <p>Filters by type:
-  <button (click)="searchByType('photo')">photos</button>
-  <button (click)="searchByType('illustration')">illustrations</button>
-  <button (click)="searchByType('vector')">vector-graphics</button>
+  <button class="btn btn-default" (click)="searchByType('photo')">photos</button>
+  <button class="btn btn-default" (click)="searchByType('illustration')">illustrations</button>
+  <button class="btn btn-default" (click)="searchByType('vector')">vector-graphics</button>
 </p>
 <router-outlet></router-outlet>
+<p class="bg-danger" *ngIf="isNoResult">No result found!</p>
 <app-search-result [results]="photos"></app-search-result>
