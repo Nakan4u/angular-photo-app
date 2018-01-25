@@ -15,19 +15,31 @@ import {
 })
 export class LoginFormComponent implements OnInit {
   myform: FormGroup;
+  email: FormControl;
+  password: FormControl;
 
   constructor() { }
 
   ngOnInit() {
+    this.createFormControls();
+    this.createForm();
+  }
+
+  createFormControls() {
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+    ]);
+    this.password = new FormControl('', [
+      Validators.required,
+      Validators.minLength(8)
+    ]);
+  }
+
+  createForm() { 
     this.myform = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8)
-      ])
+      email: this.email,
+      password: this.password
     });
   }
 
