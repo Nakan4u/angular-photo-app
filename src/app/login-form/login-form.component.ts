@@ -43,4 +43,11 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    if (this.myform.valid) {
+      console.log("Form Submitted!");
+      this.myform.reset();
+    }
+  }
+
 }
