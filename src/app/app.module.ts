@@ -16,12 +16,14 @@ import { IllustrationsListComponent } from './search-result/illustrations-list/i
 import { VectorGraphicsListComponent } from './search-result/vector-graphics-list/vector-graphics-list.component';
 import { PhotosListComponent } from './search-result/photos-list/photos-list.component';
 import { UserService, OnlyLoggedInUsersGuard } from './user.service';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 const routes:Routes = [
-	{path: '', redirectTo: 'home', pathMatch: 'full'}, 
-	{path: 'find', redirectTo: 'search'}, 
+  {path: '', redirectTo: 'home', pathMatch: 'full'}, 
   {path: 'home', component: HomePageComponent},
+  {path: 'login', component: LoginFormComponent},
+	{path: 'find', redirectTo: 'search'},
   {path: 'search', component: SearchPageComponent,
     children: [
       {path: 'all', redirectTo: 'photo'},
@@ -43,7 +45,8 @@ const routes:Routes = [
     SearchPageComponent,
     IllustrationsListComponent,
     VectorGraphicsListComponent,
-    PhotosListComponent
+    PhotosListComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
