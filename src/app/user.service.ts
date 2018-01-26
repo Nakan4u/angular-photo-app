@@ -3,11 +3,18 @@ import {CanActivate} from "@angular/router";
 
 @Injectable()
 export class UserService {
+  private isLoggedIn: boolean = false;
 
   constructor() { }
 
-  isLoggedIn(): boolean {
-    return false;
+  public getLoggedInStatus(): boolean {
+    return this.isLoggedIn;
+  }
+  public logIn() {
+    this.isLoggedIn = true;
+  }
+  public logOut() {
+    this.isLoggedIn = false;
   }
 }
 
@@ -17,7 +24,7 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
 
   canActivate() {
     console.log("OnlyLoggedInUsers");
-    if (this.userService.isLoggedIn()) { 
+    if (this.userService.getLoggedInStatus()) { 
       return true;
     } else {
       window.alert("You don't have permission to view this page"); 

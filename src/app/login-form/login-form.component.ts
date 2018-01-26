@@ -7,6 +7,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,7 +19,12 @@ export class LoginFormComponent implements OnInit {
   email: FormControl;
   password: FormControl;
 
-  constructor() { }
+  private admin = {
+    email: 'admin@mail.com',
+    password: '1234qwer'
+  }
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -44,8 +50,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myform.valid) {
+    debugger;
+    if (this.myform.valid && this.email.value === this.admin.email && this.password.value === this.admin.password )  {
       console.log("Form Submitted!");
+      this.userService.logIn();
       this.myform.reset();
     }
   }
