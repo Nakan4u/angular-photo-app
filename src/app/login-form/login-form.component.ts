@@ -50,7 +50,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     if (this.myform.valid && this.email.value === this.admin.email && this.password.value === this.admin.password )  {
       console.log("Form Submitted!");
       this.userService.logIn();
