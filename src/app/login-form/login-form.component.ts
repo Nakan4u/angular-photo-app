@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -24,7 +25,9 @@ export class LoginFormComponent implements OnInit {
     password: '1234qwer'
   }
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -54,6 +57,7 @@ export class LoginFormComponent implements OnInit {
       console.log("Form Submitted!");
       this.userService.logIn();
       this.myform.reset();
+      this.router.navigate(['search', {term: 'nature'}]);
     }
   }
 

@@ -5,7 +5,7 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" [routerLink]="['home']">Home</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isUserLoggedIn">
         <a class="nav-link" [routerLink]="['search']">Search</a>
       </li>
     </ul>
@@ -24,7 +24,7 @@
   </nav>
   <h1>
     {{title}} powered by:
-    <a href="https://pixabay.com/">
+    <a href="https://pixabay.com/" target="_blank">
       <img src="https://pixabay.com/static/img/logo.svg" alt="Pixabay" width="200">
     </a>
   </h1>
