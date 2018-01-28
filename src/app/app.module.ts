@@ -18,6 +18,13 @@ import { PhotosListComponent } from './search-result/photos-list/photos-list.com
 import { UserService, OnlyLoggedInUsersGuard } from './user.service';
 import { LoginFormComponent } from './login-form/login-form.component';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AuthService } from './services/auth.service';
+
 
 const routes:Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'}, 
@@ -55,9 +62,12 @@ const routes:Routes = [
     HttpModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes, {useHash: true}),
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [SearchService, UserService, OnlyLoggedInUsersGuard],
+  providers: [SearchService, UserService, OnlyLoggedInUsersGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

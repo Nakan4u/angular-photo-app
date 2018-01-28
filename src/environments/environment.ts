@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDKdqbpDlhcyrIDseapNPmhMbM31QNrc_8",
+    authDomain: "photo-finder-app.firebaseapp.com",
+    databaseURL: "https://photo-finder-app.firebaseio.com",
+    projectId: "photo-finder-app",
+    storageBucket: "photo-finder-app.appspot.com",
+    messagingSenderId: "904958291405"
+  }
 };
+

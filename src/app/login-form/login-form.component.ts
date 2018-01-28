@@ -9,6 +9,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { UserService } from '../user.service';
+import { AuthService }  from '../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -20,13 +21,9 @@ export class LoginFormComponent implements OnInit {
   email: FormControl;
   password: FormControl;
 
-  private admin = {
-    email: 'admin@mail.com',
-    password: '1234qwer'
-  }
-
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
@@ -53,12 +50,21 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myform.valid && this.email.value === this.admin.email && this.password.value === this.admin.password )  {
+    if (this.myform.valid )  {
       console.log("Form Submitted!");
       this.userService.logIn();
       this.myform.reset();
       this.router.navigate(['search', {term: 'nature'}]);
     }
+  }
+
+  signInWithGoogle() {
+    this.authService.signInWithGoogle()
+    .then((res) => {
+        this.userService.logIn();
+        this.router.navigate(['search', {term: 'nature'}]);
+      })
+    .catch((err) => console.log(err));
   }
 
 }
