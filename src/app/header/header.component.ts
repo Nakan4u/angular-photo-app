@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import { UserService } from '../user.service';
+import { AuthService }  from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,20 +9,24 @@ import { UserService } from '../user.service';
 })
 export class HeaderComponent implements OnInit {
   title = 'Photo app';
+  userName: string = '';
   isUserLoggedIn: boolean = false;
 
   constructor(
     private router: Router,
-    private userService: UserService) { }
+    private authService: AuthService,) { }
 
   ngOnInit() {
-    this.userService.getLoggedInStatus.subscribe(status => this.isUserLoggedIn = status)
+    this.authService.user.subscribe(user => {
+      this.userName = user && user.displayName || 'noName';
+      this.isUserLoggedIn = !!user
+    })
   }
 
   logOut(event) {
     event.preventDefault();
     if (window.confirm("Are you sure?")) {
-      this.userService.logOut();
+      this.authService.logout();
       this.router.navigate(['login']);
     }
   }

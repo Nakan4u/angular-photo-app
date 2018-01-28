@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -8,8 +8,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
-import { UserService } from '../user.service';
-import { AuthService }  from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -22,7 +21,6 @@ export class LoginFormComponent implements OnInit {
   password: FormControl;
 
   constructor(
-    private userService: UserService,
     private authService: AuthService,
     private router: Router) { }
 
@@ -42,29 +40,32 @@ export class LoginFormComponent implements OnInit {
     ]);
   }
 
-  createForm() { 
+  createForm() {
     this.myform = new FormGroup({
       email: this.email,
       password: this.password
     });
   }
 
-  onSubmit() {
-    if (this.myform.valid )  {
-      console.log("Form Submitted!");
-      this.userService.logIn();
-      this.myform.reset();
-      this.router.navigate(['search', {term: 'nature'}]);
+  signInWithEmail() {
+    if (this.myform.valid) {
+      this.authService.signInRegular(this.email.value, this.password.value)
+        .then((res) => {
+          this.myform.reset();
+          console.log(res, 'log-in regular');
+          this.router.navigate(['search', { term: 'nature' }]);
+        })
+        .catch((err) => console.log(err));
     }
   }
 
   signInWithGoogle() {
     this.authService.signInWithGoogle()
-    .then((res) => {
-        this.userService.logIn();
-        this.router.navigate(['search', {term: 'nature'}]);
+      .then((res) => {
+        console.log(res, 'log-in google');
+        this.router.navigate(['search', { term: 'nature' }]);
       })
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }
 
 }

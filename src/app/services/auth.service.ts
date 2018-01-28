@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
-  private user: Observable<firebase.User>;
+  user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
@@ -26,6 +26,13 @@ export class AuthService {
         }
       }
     );
+  }
+
+  signInRegular(email, password) {
+    const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+
+    return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
+
   }
 
   signInWithGoogle() {

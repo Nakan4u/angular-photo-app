@@ -1,5 +1,5 @@
 <h3>Login form</h3>
-<form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()">
+<form novalidate [formGroup]="myform" (ngSubmit)="signInWithEmail()">
   <div class="form-group" [ngClass]="{
       'has-error': email.invalid && email.dirty, 
       'has-success': email.valid && email.dirty 
@@ -25,7 +25,7 @@
       </span>
     </p>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default" [disabled]="myform.invalid">Login</button>
   <button type="button" class="btn btn-default" (click)="signInWithGoogle()">
     <i class="fa fa-google" aria-hidden="true"></i>
        Login with google

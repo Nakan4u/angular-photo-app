@@ -15,7 +15,6 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { IllustrationsListComponent } from './search-result/illustrations-list/illustrations-list.component';
 import { VectorGraphicsListComponent } from './search-result/vector-graphics-list/vector-graphics-list.component';
 import { PhotosListComponent } from './search-result/photos-list/photos-list.component';
-import { UserService, OnlyLoggedInUsersGuard } from './user.service';
 import { LoginFormComponent } from './login-form/login-form.component';
 
 import { environment } from '../environments/environment';
@@ -24,6 +23,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 const routes:Routes = [
@@ -33,7 +33,7 @@ const routes:Routes = [
 	{path: 'find', redirectTo: 'search'},
   {path: 'search', 
     component: SearchPageComponent, 
-    canActivate: [OnlyLoggedInUsersGuard],
+    canActivate: [AuthGuard],
     children: [
       {path: 'all', redirectTo: 'photo'},
       {path: 'photo', component: PhotosListComponent},
@@ -67,7 +67,7 @@ const routes:Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [SearchService, UserService, OnlyLoggedInUsersGuard, AuthService],
+  providers: [SearchService, AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
