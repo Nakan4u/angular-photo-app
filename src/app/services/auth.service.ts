@@ -41,6 +41,12 @@ export class AuthService {
     )
   }
 
+  signInWithGithub() {
+    return this._firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.GithubAuthProvider()
+    )
+  }
+
   isLoggedIn() {
     if (this.userDetails == null) {
       return false;

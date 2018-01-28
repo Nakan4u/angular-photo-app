@@ -52,7 +52,7 @@ export class LoginFormComponent implements OnInit {
       this.authService.signInRegular(this.email.value, this.password.value)
         .then((res) => {
           this.myform.reset();
-          console.log(res, 'log-in regular');
+          console.log(res, 'log-in  regular');
           this.router.navigate(['search', { term: 'nature' }]);
         })
         .catch((err) => console.log(err));
@@ -62,8 +62,17 @@ export class LoginFormComponent implements OnInit {
   signInWithGoogle() {
     this.authService.signInWithGoogle()
       .then((res) => {
-        console.log(res, 'log-in google');
-        this.router.navigate(['search', { term: 'nature' }]);
+        console.log(res, 'log-in with google');
+        this.router.navigate(['search', { term: 'cars' }]);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  signInWithGithub() {
+    this.authService.signInWithGithub()
+      .then((res) => {
+        console.log(res, 'log-in with git-hub');
+        this.router.navigate(['search', { term: 'fantasy' }]);
       })
       .catch((err) => console.log(err));
   }
