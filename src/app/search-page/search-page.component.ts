@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchItem } from '../search.service';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -37,6 +37,7 @@ export class SearchPageComponent implements OnInit {
 
   searchByType(type: string) {
     let term = this.term;
+    this.photos = []; // clear prev search result;
     this.router.navigate(['search', { term, type }]);
   }
 
