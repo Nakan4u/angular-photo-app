@@ -24,12 +24,14 @@ const routes:Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'login', component: LoginFormComponent},
 	{path: 'find', redirectTo: 'search'},
-  {path: 'search', component: SearchPageComponent,
+  {path: 'search', 
+    component: SearchPageComponent, 
+    canActivate: [OnlyLoggedInUsersGuard],
     children: [
       {path: 'all', redirectTo: 'photo'},
       {path: 'photo', component: PhotosListComponent},
       {path: 'illustration', component: IllustrationsListComponent}, 
-      {path: 'vector', component: VectorGraphicsListComponent, canActivate: [OnlyLoggedInUsersGuard]}, 
+      {path: 'vector', component: VectorGraphicsListComponent}, 
     ]
   },
   {path: '**', component: HomePageComponent}

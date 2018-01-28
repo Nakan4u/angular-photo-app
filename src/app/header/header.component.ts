@@ -19,8 +19,12 @@ export class HeaderComponent implements OnInit {
     this.userService.getLoggedInStatus.subscribe(status => this.isUserLoggedIn = status)
   }
 
-  logOut() {
-    this.userService.logOut();
+  logOut(event) {
+    event.preventDefault();
+    if (window.confirm("Are you sure?")) {
+      this.userService.logOut();
+      this.router.navigate(['login']);
+    }
   }
 
 }
