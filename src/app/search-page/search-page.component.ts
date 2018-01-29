@@ -11,6 +11,7 @@ export class SearchPageComponent implements OnInit {
   private loading: boolean = false;
   private photos: any = [];
   private term: string;
+  private type: string;
   private isNoResult: boolean;
 
   constructor(
@@ -23,6 +24,9 @@ export class SearchPageComponent implements OnInit {
       if (params['term']) {
         this.term = params['term'];
       }
+      if (params['type']) {
+        this.type = params['type'];
+      }
     })
   }
 
@@ -33,12 +37,6 @@ export class SearchPageComponent implements OnInit {
   onSearchFinished(results: SearchItem[]) {
     this.photos = results;
     this.isNoResult = !results.length;
-  }
-
-  searchByType(type: string) {
-    let term = this.term;
-    this.photos = []; // clear prev search result;
-    this.router.navigate(['search', { term, type }]);
   }
 
 }

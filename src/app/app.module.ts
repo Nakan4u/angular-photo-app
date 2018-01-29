@@ -12,9 +12,6 @@ import { HeaderComponent } from './header/header.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
-import { IllustrationsListComponent } from './search-result/illustrations-list/illustrations-list.component';
-import { VectorGraphicsListComponent } from './search-result/vector-graphics-list/vector-graphics-list.component';
-import { PhotosListComponent } from './search-result/photos-list/photos-list.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 
 import { environment } from '../environments/environment';
@@ -26,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
 
+
 const routes:Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'}, 
   {path: 'home', component: HomePageComponent},
@@ -33,13 +31,7 @@ const routes:Routes = [
 	{path: 'find', redirectTo: 'search'},
   {path: 'search', 
     component: SearchPageComponent, 
-    canActivate: [AuthGuard],
-    children: [
-      {path: 'all', redirectTo: 'photo'},
-      {path: 'photo', component: PhotosListComponent},
-      {path: 'illustration', component: IllustrationsListComponent}, 
-      {path: 'vector', component: VectorGraphicsListComponent}, 
-    ]
+    canActivate: [AuthGuard]
   },
   {path: '**', component: HomePageComponent}
 ];
@@ -52,10 +44,7 @@ const routes:Routes = [
     SearchResultComponent,
     HomePageComponent,
     SearchPageComponent,
-    IllustrationsListComponent,
-    VectorGraphicsListComponent,
-    PhotosListComponent,
-    LoginFormComponent
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

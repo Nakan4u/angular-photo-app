@@ -40,7 +40,7 @@ export class SearchFormComponent implements OnInit {
 
   doSearch(term: string, type: string) {
     if (term) {
-      this.router.navigate(['search', type, { term, type }]);
+      this.router.navigate(['search', { term, type }]);
       this.changeLoadingState.emit(true)
       this.photosService.search(term, type)
         .subscribe(value => {
