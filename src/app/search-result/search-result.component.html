@@ -1,9 +1,10 @@
 <ul class="list-group" *ngIf="results">
-  <li class="list-group-item" *ngFor="let item of results">
-    <a href="{{item.pageURL}}" target="_blank">
-      <img src="{{item.previewURL}}" alt="{{item.tags}}" width="{{item.previewWidth}}" height="{{item.previewHeight}}">
+  <li class="list-group-item clearfix" *ngFor="let item of results">
+    <a class="pull-left" href="{{item.pageURL}}" target="_blank">
+      <img class="photo" src="{{item.previewURL}}" alt="{{item.tags}}" width="{{item.previewWidth}}" height="{{item.previewHeight}}">
     </a>
-    <br>
-    <p>{{item.tags}}</p>
+    <ul *ngFor="let tag of item.tags.split(',')">
+      <li><a href="" (click)="searchByTag(tag, $event)">{{tag}}</a></li>
+    </ul>
   </li>
 </ul>
