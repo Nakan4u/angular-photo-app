@@ -25,7 +25,8 @@ export class SearchFormComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       if (params['term']) {
-        this.doSearch(params['term'], params['type'] || 'all')
+        this.doSearch(params['term'], params['type'] || 'all');
+        this.searchField.setValue(params['term']);
       }
     });
   }
