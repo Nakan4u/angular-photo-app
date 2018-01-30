@@ -1,4 +1,4 @@
-<ul class="list-group" *ngIf="results">
+<ul class="list-group" *ngIf="results.length">
   <li class="list-group-item clearfix" *ngFor="let item of results">
     <a class="pull-left" href="{{item.pageURL}}" target="_blank">
       <img class="photo" src="{{item.previewURL}}" alt="{{item.tags}}" width="{{item.previewWidth}}" height="{{item.previewHeight}}">
@@ -8,3 +8,6 @@
     </ul>
   </li>
 </ul>
+<p *ngIf="results.length" class="text-center">
+  <a href="https://pixabay.com/en/photos/?q={{term}}&image_type={{type}}" target="_blank">more photos</a>
+</p>
