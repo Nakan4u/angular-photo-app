@@ -19,6 +19,7 @@ export class LoginFormComponent implements OnInit {
   myform: FormGroup;
   email: FormControl;
   password: FormControl;
+  error: string;
 
   constructor(
     private authService: AuthService,
@@ -55,7 +56,11 @@ export class LoginFormComponent implements OnInit {
           console.log(res, 'log-in  regular');
           this.router.navigate(['search', { term: 'nature' }]);
         })
-        .catch((err) => console.log(err));
+        .catch(err => {
+          console.log(err);
+          if (err.message)
+            this.error = err.message;
+        });
     }
   }
 
@@ -65,16 +70,11 @@ export class LoginFormComponent implements OnInit {
         console.log(res, 'log-in with google');
         this.router.navigate(['search', { term: 'cars' }]);
       })
-      .catch((err) => console.log(err));
-  }
-
-  signInWithGithub() {
-    this.authService.signInWithGithub()
-      .then((res) => {
-        console.log(res, 'log-in with git-hub');
-        this.router.navigate(['search', { term: 'fantasy' }]);
-      })
-      .catch((err) => console.log(err));
+      .catch(err => {
+        console.log(err);
+        if (err.message)
+          this.error = err.message;
+      });
   }
 
 }
