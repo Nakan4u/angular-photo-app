@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-12\">\n  <app-header></app-header>\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<div class=\"col-md-12\">\r\n  <app-header></app-header>\r\n  <router-outlet></router-outlet>\r\n</div>"
 
 /***/ }),
 
@@ -94,16 +94,13 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__search_result_search_result_component__ = __webpack_require__("../../../../../src/app/search-result/search-result.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_page_home_page_component__ = __webpack_require__("../../../../../src/app/home-page/home-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__search_page_search_page_component__ = __webpack_require__("../../../../../src/app/search-page/search-page.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__search_result_illustrations_list_illustrations_list_component__ = __webpack_require__("../../../../../src/app/search-result/illustrations-list/illustrations-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__search_result_vector_graphics_list_vector_graphics_list_component__ = __webpack_require__("../../../../../src/app/search-result/vector-graphics-list/vector-graphics-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__search_result_photos_list_photos_list_component__ = __webpack_require__("../../../../../src/app/search-result/photos-list/photos-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angularfire2__ = __webpack_require__("../../../../angularfire2/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angularfire2_database__ = __webpack_require__("../../../../angularfire2/database/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angularfire2_auth__ = __webpack_require__("../../../../angularfire2/auth/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_auth_guard_service__ = __webpack_require__("../../../../../src/app/services/auth-guard.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angularfire2__ = __webpack_require__("../../../../angularfire2/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2_database__ = __webpack_require__("../../../../angularfire2/database/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2_auth__ = __webpack_require__("../../../../angularfire2/auth/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_auth_guard_service__ = __webpack_require__("../../../../../src/app/services/auth-guard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -129,23 +126,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
-
 var routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_10__home_page_home_page_component__["a" /* HomePageComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_15__login_form_login_form_component__["a" /* LoginFormComponent */] },
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_12__login_form_login_form_component__["a" /* LoginFormComponent */] },
     { path: 'find', redirectTo: 'search' },
     { path: 'search',
         component: __WEBPACK_IMPORTED_MODULE_11__search_page_search_page_component__["a" /* SearchPageComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_21__services_auth_guard_service__["a" /* AuthGuard */]],
-        children: [
-            { path: 'all', redirectTo: 'photo' },
-            { path: 'photo', component: __WEBPACK_IMPORTED_MODULE_14__search_result_photos_list_photos_list_component__["a" /* PhotosListComponent */] },
-            { path: 'illustration', component: __WEBPACK_IMPORTED_MODULE_12__search_result_illustrations_list_illustrations_list_component__["a" /* IllustrationsListComponent */] },
-            { path: 'vector', component: __WEBPACK_IMPORTED_MODULE_13__search_result_vector_graphics_list_vector_graphics_list_component__["a" /* VectorGraphicsListComponent */] },
-        ]
+        canActivate: [__WEBPACK_IMPORTED_MODULE_18__services_auth_guard_service__["a" /* AuthGuard */]]
     },
     { path: '**', component: __WEBPACK_IMPORTED_MODULE_10__home_page_home_page_component__["a" /* HomePageComponent */] }
 ];
@@ -161,10 +149,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_9__search_result_search_result_component__["a" /* SearchResultComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__home_page_home_page_component__["a" /* HomePageComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__search_page_search_page_component__["a" /* SearchPageComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__search_result_illustrations_list_illustrations_list_component__["a" /* IllustrationsListComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__search_result_vector_graphics_list_vector_graphics_list_component__["a" /* VectorGraphicsListComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__search_result_photos_list_photos_list_component__["a" /* PhotosListComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__login_form_login_form_component__["a" /* LoginFormComponent */]
+                __WEBPACK_IMPORTED_MODULE_12__login_form_login_form_component__["a" /* LoginFormComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -172,11 +157,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["d" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(routes, { useHash: true }),
-                __WEBPACK_IMPORTED_MODULE_17_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_16__environments_environment__["a" /* environment */].firebase, 'angular-auth-firebase'),
-                __WEBPACK_IMPORTED_MODULE_18_angularfire2_database__["a" /* AngularFireDatabaseModule */],
-                __WEBPACK_IMPORTED_MODULE_19_angularfire2_auth__["b" /* AngularFireAuthModule */]
+                __WEBPACK_IMPORTED_MODULE_14_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_13__environments_environment__["a" /* environment */].firebase, 'angular-auth-firebase'),
+                __WEBPACK_IMPORTED_MODULE_15_angularfire2_database__["a" /* AngularFireDatabaseModule */],
+                __WEBPACK_IMPORTED_MODULE_16_angularfire2_auth__["b" /* AngularFireAuthModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_7__search_service__["a" /* SearchService */], __WEBPACK_IMPORTED_MODULE_21__services_auth_guard_service__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_20__services_auth_service__["a" /* AuthService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_7__search_service__["a" /* SearchService */], __WEBPACK_IMPORTED_MODULE_18__services_auth_guard_service__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_17__services_auth_service__["a" /* AuthService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -208,7 +193,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n    <ul class=\"nav navbar-nav\">\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\n        <a class=\"nav-link\" [routerLink]=\"['home']\">Home</a>\n      </li>\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"isUserLoggedIn\">\n        <a class=\"nav-link\" [routerLink]=\"['search']\">Search</a>\n      </li>\n    </ul>\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"!isUserLoggedIn\">\n        <a class=\"nav-link\" [routerLink]=\"['login']\">Login</a>\n      </li>\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"isUserLoggedIn\">\n        <a class=\"nav-link\">Hello {{userName}}</a>\n      </li>\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"isUserLoggedIn\">\n        <a class=\"nav-link\" href=\"\" (click)=\"logOut($event)\">Log out</a>\n      </li>\n    </ul>\n    </div>\n  </nav>\n  <h1>\n    {{title}} powered by:\n    <a href=\"https://pixabay.com/\" target=\"_blank\">\n      <img src=\"https://pixabay.com/static/img/logo.svg\" alt=\"Pixabay\" width=\"200\">\n    </a>\n  </h1>\n</header>"
+module.exports = "<header>\r\n  <nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n    <ul class=\"nav navbar-nav\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\">\r\n        <a class=\"nav-link\" [routerLink]=\"['home']\">Home</a>\r\n      </li>\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"isUserLoggedIn\">\r\n        <a class=\"nav-link\" [routerLink]=\"['search']\">Search</a>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"!isUserLoggedIn\">\r\n        <a class=\"nav-link\" [routerLink]=\"['login']\">Login</a>\r\n      </li>\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"isUserLoggedIn\">\r\n        <a class=\"nav-link\">Hello {{userName}}</a>\r\n      </li>\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" *ngIf=\"isUserLoggedIn\">\r\n        <a class=\"nav-link\" href=\"\" (click)=\"logOut($event)\">Log out</a>\r\n      </li>\r\n    </ul>\r\n    </div>\r\n  </nav>\r\n  <h1>\r\n    {{title}} powered by:\r\n    <a href=\"https://pixabay.com/\" target=\"_blank\">\r\n      <img src=\"https://pixabay.com/static/img/logo.svg\" alt=\"Pixabay\" width=\"200\">\r\n    </a>\r\n  </h1>\r\n</header>"
 
 /***/ }),
 
@@ -291,7 +276,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home-page/home-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  Simply app to search nice photos. Please login first to perform searching.\n</p>\n"
+module.exports = "<p>\r\n  Simply app to search nice photos. Please login first to perform searching.\r\n</p>\r\n"
 
 /***/ }),
 
@@ -352,7 +337,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-form/login-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Login form</h3>\n<form novalidate [formGroup]=\"myform\" (ngSubmit)=\"signInWithEmail()\">\n  <div class=\"form-group\" [ngClass]=\"{\n      'has-error': email.invalid && email.dirty, \n      'has-success': email.valid && email.dirty \n    }\">\n    <label>Email</label>\n    <input type=\"email\" class=\"form-control\" formControlName=\"email\">\n    <p class=\"help-block\" *ngIf=\"email.errors && (email.dirty || email.touched)\">\n      <span *ngIf=\"email.errors.required\">Email is required</span>\n      <span *ngIf=\"email.errors.pattern\">Pattern \"[^ @]*@[^ @]*\" doesn't match</span>\n    </p>\n  </div>\n  <div class=\"form-group\" [ngClass]=\"{\n    'has-error': password.invalid && password.dirty, \n    'has-success': password.valid && password.dirty \n  }\">\n    <label>Password</label>\n    <input type=\"password\" class=\"form-control\" formControlName=\"password\">\n    <p class=\"help-block\" *ngIf=\"password.errors && (password.dirty || password.touched)\">\n      <span *ngIf=\"password.errors.required\">Password is required</span>\n      <span *ngIf=\"password.errors.minlength\">\n        Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}\n        characters\n      </span>\n    </p>\n  </div>\n  <button type=\"submit\" class=\"btn btn-default\" [disabled]=\"myform.invalid\">Login</button>\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"signInWithGoogle()\">\n    <i class=\"fa fa-google\" aria-hidden=\"true\"></i>\n    Login with Google\n  </button>\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"signInWithGithub()\">\n    <i class=\"fa fa-github \" aria-hidden=\"true \"></i>Login with Github\n  </button>\n</form>"
+module.exports = "<h3>Login form</h3>\r\n<form novalidate [formGroup]=\"myform\" (ngSubmit)=\"signInWithEmail()\">\r\n  <div class=\"form-group\" [ngClass]=\"{\r\n      'has-error': email.invalid && email.dirty, \r\n      'has-success': email.valid && email.dirty \r\n    }\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" formControlName=\"email\">\r\n    <p class=\"help-block\" *ngIf=\"email.errors && (email.dirty || email.touched)\">\r\n      <span *ngIf=\"email.errors.required\">Email is required</span>\r\n      <span *ngIf=\"email.errors.pattern\">Pattern \"[^ @]*@[^ @]*\" doesn't match</span>\r\n    </p>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{\r\n    'has-error': password.invalid && password.dirty, \r\n    'has-success': password.valid && password.dirty \r\n  }\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" formControlName=\"password\">\r\n    <p class=\"help-block\" *ngIf=\"password.errors && (password.dirty || password.touched)\">\r\n      <span *ngIf=\"password.errors.required\">Password is required</span>\r\n      <span *ngIf=\"password.errors.minlength\">\r\n        Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}\r\n        characters\r\n      </span>\r\n    </p>\r\n  </div>\r\n  <button type=\"submit\" class=\"btn btn-default\" [disabled]=\"myform.invalid\">Login</button>\r\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"signInWithGoogle()\">\r\n    <i class=\"fa fa-google\" aria-hidden=\"true\"></i>\r\n    Login with Google\r\n  </button>\r\n</form>\r\n<p></p>\r\n<p class=\"bg-danger\" *ngIf=\"error\">{{error}}</p>"
 
 /***/ }),
 
@@ -412,7 +397,11 @@ var LoginFormComponent = (function () {
                 console.log(res, 'log-in  regular');
                 _this.router.navigate(['search', { term: 'nature' }]);
             })
-                .catch(function (err) { return console.log(err); });
+                .catch(function (err) {
+                console.log(err);
+                if (err.message)
+                    _this.error = err.message;
+            });
         }
     };
     LoginFormComponent.prototype.signInWithGoogle = function () {
@@ -422,16 +411,11 @@ var LoginFormComponent = (function () {
             console.log(res, 'log-in with google');
             _this.router.navigate(['search', { term: 'cars' }]);
         })
-            .catch(function (err) { return console.log(err); });
-    };
-    LoginFormComponent.prototype.signInWithGithub = function () {
-        var _this = this;
-        this.authService.signInWithGithub()
-            .then(function (res) {
-            console.log(res, 'log-in with git-hub');
-            _this.router.navigate(['search', { term: 'fantasy' }]);
-        })
-            .catch(function (err) { return console.log(err); });
+            .catch(function (err) {
+            console.log(err);
+            if (err.message)
+                _this.error = err.message;
+        });
     };
     LoginFormComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -470,7 +454,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/search-form/search-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-inline\">\n  <div class=\"form-group\">\n    <input type=\"search\" class=\"form-control\" placeholder=\"Enter search string\" [formControl]=\"searchField\">\n  </div>\n</form>"
+module.exports = "<form class=\"form-inline pull-left\">\r\n  <div class=\"form-group\">\r\n    <input type=\"search\" class=\"form-control\" placeholder=\"Enter search string\" [formControl]=\"searchField\">\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -515,6 +499,7 @@ var SearchFormComponent = (function () {
         this.route.params.subscribe(function (params) {
             if (params['term']) {
                 _this.doSearch(params['term'], params['type'] || 'all');
+                _this.searchField.setValue(params['term']);
             }
         });
     }
@@ -529,7 +514,7 @@ var SearchFormComponent = (function () {
     SearchFormComponent.prototype.doSearch = function (term, type) {
         var _this = this;
         if (term) {
-            this.router.navigate(['search', type, { term: term, type: type }]);
+            this.router.navigate(['search', { term: term, type: type }]);
             this.changeLoadingState.emit(true);
             this.photosService.search(term, type)
                 .subscribe(function (value) {
@@ -587,7 +572,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/search-page/search-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-search-form \n  (onSearchFinished)=\"onSearchFinished($event)\" \n  (changeLoadingState)=\"changeLoadingState($event)\">\n</app-search-form>\n<div class=\"text-center\">\n  <p class=\"lead\" *ngIf=\"loading\">Loading...</p>\n</div>\n<br>\n<p>Filters by type:\n  <button class=\"btn btn-default\" (click)=\"searchByType('photo')\">photos</button>\n  <button class=\"btn btn-default\" (click)=\"searchByType('illustration')\">illustrations</button>\n  <button class=\"btn btn-default\" (click)=\"searchByType('vector')\">vector-graphics</button>\n</p>\n<router-outlet></router-outlet>\n<p class=\"bg-danger\" *ngIf=\"isNoResult\">No result found!</p>\n<app-search-result [results]=\"photos\"></app-search-result>\n"
+module.exports = "<app-search-form (onSearchFinished)=\"onSearchFinished($event)\" (changeLoadingState)=\"changeLoadingState($event)\">\r\n</app-search-form>\r\n<div class=\"pull-right\">\r\n  <p>Filters by type:\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'all'}\" [routerLink]=\"[{ term: term, type: 'all'}]\">all</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'photo'}\" [routerLink]=\"[{ term: term, type: 'photo' }]\">photos</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'illustration'}\" [routerLink]=\"[{ term: term, type: 'illustration' }]\">illustrations</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'vector'}\" [routerLink]=\"[{ term: term, type: 'vector' }]\">vector-graphics</button>\r\n  </p>\r\n</div>\r\n<br>\r\n<h3>Search results:</h3>\r\n<div class=\"text-center\">\r\n  <p class=\"lead\" *ngIf=\"loading\">Loading...</p>\r\n</div>\r\n<p class=\"bg-danger\" *ngIf=\"isNoResult\">No result found!</p>\r\n<app-search-result [results]=\"photos\"></app-search-result>"
 
 /***/ }),
 
@@ -622,6 +607,9 @@ var SearchPageComponent = (function () {
             if (params['term']) {
                 _this.term = params['term'];
             }
+            if (params['type']) {
+                _this.type = params['type'];
+            }
         });
     };
     SearchPageComponent.prototype.changeLoadingState = function (value) {
@@ -630,10 +618,6 @@ var SearchPageComponent = (function () {
     SearchPageComponent.prototype.onSearchFinished = function (results) {
         this.photos = results;
         this.isNoResult = !results.length;
-    };
-    SearchPageComponent.prototype.searchByType = function (type) {
-        var term = this.term;
-        this.router.navigate(['search', { term: term, type: type }]);
     };
     SearchPageComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -651,128 +635,6 @@ var SearchPageComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-result/illustrations-list/illustrations-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/illustrations-list/illustrations-list.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  illustrations-list:\n</p>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/illustrations-list/illustrations-list.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IllustrationsListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var IllustrationsListComponent = (function () {
-    function IllustrationsListComponent() {
-    }
-    IllustrationsListComponent.prototype.ngOnInit = function () {
-    };
-    IllustrationsListComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-illustrations-list',
-            template: __webpack_require__("../../../../../src/app/search-result/illustrations-list/illustrations-list.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/search-result/illustrations-list/illustrations-list.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], IllustrationsListComponent);
-    return IllustrationsListComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/photos-list/photos-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/photos-list/photos-list.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  photos-list:\n</p>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/photos-list/photos-list.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PhotosListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var PhotosListComponent = (function () {
-    function PhotosListComponent() {
-    }
-    PhotosListComponent.prototype.ngOnInit = function () {
-    };
-    PhotosListComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-photos-list',
-            template: __webpack_require__("../../../../../src/app/search-result/photos-list/photos-list.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/search-result/photos-list/photos-list.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], PhotosListComponent);
-    return PhotosListComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "../../../../../src/app/search-result/search-result.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -781,7 +643,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".photo {\r\n    margin-right: 20px;\r\n}", ""]);
 
 // exports
 
@@ -794,7 +656,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/search-result/search-result.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"list-group\" *ngIf=\"results\">\n  <li class=\"list-group-item\" *ngFor=\"let item of results\">\n    <a href=\"{{item.pageURL}}\" target=\"_blank\">\n      <img src=\"{{item.previewURL}}\" alt=\"{{item.tags}}\" width=\"{{item.previewWidth}}\" height=\"{{item.previewHeight}}\">\n    </a>\n    <br>\n    <p>{{item.tags}}</p>\n  </li>\n</ul>"
+module.exports = "<ul class=\"list-group\" *ngIf=\"results.length\">\r\n  <li class=\"list-group-item clearfix\" *ngFor=\"let item of results\">\r\n    <a class=\"pull-left\" href=\"{{item.pageURL}}\" target=\"_blank\">\r\n      <img class=\"photo\" src=\"{{item.previewURL}}\" alt=\"{{item.tags}}\" width=\"{{item.previewWidth}}\" height=\"{{item.previewHeight}}\">\r\n    </a>\r\n    <ul *ngFor=\"let tag of item.tags.split(',')\">\r\n      <li><a href=\"\" (click)=\"searchByTag(tag, $event)\">{{tag}}</a></li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n<p *ngIf=\"results.length\" class=\"text-center\">\r\n  <a href=\"https://pixabay.com/en/photos/?q={{term}}&image_type={{type}}\" target=\"_blank\">more photos</a>\r\n</p>"
 
 /***/ }),
 
@@ -804,6 +666,7 @@ module.exports = "<ul class=\"list-group\" *ngIf=\"results\">\n  <li class=\"lis
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchResultComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -814,10 +677,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var SearchResultComponent = (function () {
-    function SearchResultComponent() {
+    function SearchResultComponent(router, route) {
+        this.router = router;
+        this.route = route;
     }
     SearchResultComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            if (params['term']) {
+                _this.term = params['term'];
+            }
+            if (params['type']) {
+                _this.type = params['type'];
+            }
+        });
+    };
+    SearchResultComponent.prototype.searchByTag = function (tag, event) {
+        event.preventDefault();
+        this.router.navigate(['search', { term: tag }]);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('results'),
@@ -829,70 +708,10 @@ var SearchResultComponent = (function () {
             template: __webpack_require__("../../../../../src/app/search-result/search-result.component.html"),
             styles: [__webpack_require__("../../../../../src/app/search-result/search-result.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], SearchResultComponent);
     return SearchResultComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/vector-graphics-list/vector-graphics-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/vector-graphics-list/vector-graphics-list.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  vector-graphics-list:\n</p>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/search-result/vector-graphics-list/vector-graphics-list.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VectorGraphicsListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var VectorGraphicsListComponent = (function () {
-    function VectorGraphicsListComponent() {
-    }
-    VectorGraphicsListComponent.prototype.ngOnInit = function () {
-    };
-    VectorGraphicsListComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-vector-graphics-list',
-            template: __webpack_require__("../../../../../src/app/search-result/vector-graphics-list/vector-graphics-list.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/search-result/vector-graphics-list/vector-graphics-list.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], VectorGraphicsListComponent);
-    return VectorGraphicsListComponent;
 }());
 
 
