@@ -1,6 +1,6 @@
 # PhotoApp
 
-Study angular project, based on this [course](https://codecraft.tv/courses/angular/).
+Study angular project, inspired by this [course](https://codecraft.tv/courses/angular/).
 
 [Live demo](https://nakan4u.github.io/angular-photo-app/)
 
