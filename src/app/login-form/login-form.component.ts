@@ -54,7 +54,7 @@ export class LoginFormComponent implements OnInit {
         .then((res) => {
           this.myform.reset();
           console.log(res, 'log-in  regular');
-          this.router.navigate(['search', { term: 'nature' }]);
+          this.router.navigate(['search'], { queryParams: { term: 'nature' } });
         })
         .catch(err => {
           console.log(err);
@@ -68,7 +68,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.signInWithGoogle()
       .then((res) => {
         console.log(res, 'log-in with google');
-        this.router.navigate(['search', { term: 'cars' }]);
+        this.router.navigate(['search'], { queryParams: { term: 'cars' } });
       })
       .catch(err => {
         console.log(err);

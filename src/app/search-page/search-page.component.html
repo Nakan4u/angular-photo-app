@@ -2,10 +2,10 @@
 </app-search-form>
 <div class="pull-right">
   <p>Filters by type:
-    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'all'}" [routerLink]="[{ term: term, type: 'all'}]">all</button>
-    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'photo'}" [routerLink]="[{ term: term, type: 'photo' }]">photos</button>
-    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'illustration'}" [routerLink]="[{ term: term, type: 'illustration' }]">illustrations</button>
-    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'vector'}" [routerLink]="[{ term: term, type: 'vector' }]">vector-graphics</button>
+    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'all'}" [routerLink]="[]" [queryParams]="{ term: term, type: 'all'}">all</button>
+    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'photo'}" [routerLink]="[]" [queryParams]="{ term: term, type: 'photo' }">photos</button>
+    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'illustration'}" [routerLink]="[]" [queryParams]="{ term: term, type: 'illustration' }">illustrations</button>
+    <button class="btn btn-default" [ngClass]="{'btn-primary': type === 'vector'}" [routerLink]="[]" [queryParams]="{ term: term, type: 'vector' }">vector-graphics</button>
   </p>
 </div>
 <br>

@@ -22,13 +22,6 @@ export class SearchFormComponent implements OnInit {
     private photosService: SearchService,
     private router: Router,
     private route: ActivatedRoute) {
-
-    this.route.params.subscribe(params => {
-      if (params['term']) {
-        this.doSearch(params['term'], params['type'] || 'all');
-        this.searchField.setValue(params['term']);
-      }
-    });
   }
 
   ngOnInit() {
@@ -37,11 +30,18 @@ export class SearchFormComponent implements OnInit {
       .debounceTime(1000)
       .distinctUntilChanged()
       .subscribe(value => this.onSearch(value));
+
+    this.route.queryParams.subscribe(params => {
+      if (params['term']) {
+        this.doSearch(params['term'], params['type'] || 'all');
+        this.searchField.setValue(params['term']);
+      }
+    });
   }
 
   doSearch(term: string, type: string) {
     if (term) {
-      this.router.navigate(['search', { term, type }]);
+      this.router.navigate(['search'], { queryParams: { term, type } });
       this.changeLoadingState.emit(true)
       this.photosService.search(term, type)
         .subscribe(value => {
@@ -52,7 +52,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   onSearch(term: string) {
-    this.router.navigate(['search', {term}]);
+    this.router.navigate(['search'], { queryParams: { term } });
   }
 
 }

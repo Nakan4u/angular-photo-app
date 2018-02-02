@@ -29,6 +29,6 @@ export class SearchResultComponent implements OnInit {
 
   searchByTag(tag: string, event) {
     event.preventDefault();
-    this.router.navigate(['search', { term: tag }]);
+    this.router.navigate(['search'], { queryParams: { term: tag } });
   }
 }

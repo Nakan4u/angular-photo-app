@@ -19,8 +19,7 @@ export class SearchPageComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       if (params['term']) {
         this.term = params['term'];
       }
