@@ -30,6 +30,10 @@
     <i class="fa fa-google" aria-hidden="true"></i>
     Login with Google
   </button>
+  <button type="button" class="btn btn-default" (click)="signInWithFacebook()">
+    <i class="fa fa-facebook" aria-hidden="true"></i>
+    Login with Facebook
+  </button>
 </form>
 <p></p>
 <p class="bg-danger" *ngIf="error">{{error}}</p>

@@ -77,4 +77,13 @@ export class LoginFormComponent implements OnInit {
       });
   }
 
+  signInWithFacebook() {
+    this.authService.signInWithFacebook()
+    .then((res) => { 
+        console.log(res, 'log-in with facebook');
+        this.router.navigate(['search'], { queryParams: { term: 'animals' } });
+      })
+    .catch((err) => console.log(err));
+  }
+
 }

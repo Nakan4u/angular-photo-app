@@ -47,6 +47,12 @@ export class AuthService {
     )
   }
 
+  signInWithFacebook() {
+    return this._firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.FacebookAuthProvider()
+    )
+  }
+
   isLoggedIn() {
     if (this.userDetails == null) {
       return false;
