@@ -51,7 +51,7 @@ const routes:Routes = [
     HttpModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(routes, {useHash: true}),
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule
