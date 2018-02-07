@@ -88,10 +88,10 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__search_form_search_form_component__ = __webpack_require__("../../../../../src/app/search-form/search-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__search_page_search_form_search_form_component__ = __webpack_require__("../../../../../src/app/search-page/search-form/search-form.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__search_service__ = __webpack_require__("../../../../../src/app/search.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__header_header_component__ = __webpack_require__("../../../../../src/app/header/header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__search_result_search_result_component__ = __webpack_require__("../../../../../src/app/search-result/search-result.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__search_page_search_result_search_result_component__ = __webpack_require__("../../../../../src/app/search-page/search-result/search-result.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_page_home_page_component__ = __webpack_require__("../../../../../src/app/home-page/home-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__search_page_search_page_component__ = __webpack_require__("../../../../../src/app/search-page/search-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
@@ -144,9 +144,9 @@ var AppModule = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__search_form_search_form_component__["a" /* SearchFormComponent */],
+                __WEBPACK_IMPORTED_MODULE_6__search_page_search_form_search_form_component__["a" /* SearchFormComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__header_header_component__["a" /* HeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__search_result_search_result_component__["a" /* SearchResultComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__search_page_search_result_search_result_component__["a" /* SearchResultComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__home_page_home_page_component__["a" /* HomePageComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__search_page_search_page_component__["a" /* SearchPageComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__login_form_login_form_component__["a" /* LoginFormComponent */],
@@ -156,7 +156,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["d" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(routes, { useHash: true }),
+                __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(routes),
                 __WEBPACK_IMPORTED_MODULE_14_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_13__environments_environment__["a" /* environment */].firebase, 'angular-auth-firebase'),
                 __WEBPACK_IMPORTED_MODULE_15_angularfire2_database__["a" /* AngularFireDatabaseModule */],
                 __WEBPACK_IMPORTED_MODULE_16_angularfire2_auth__["b" /* AngularFireAuthModule */]
@@ -337,7 +337,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-form/login-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Login form</h3>\r\n<form novalidate [formGroup]=\"myform\" (ngSubmit)=\"signInWithEmail()\">\r\n  <div class=\"form-group\" [ngClass]=\"{\r\n      'has-error': email.invalid && email.dirty, \r\n      'has-success': email.valid && email.dirty \r\n    }\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" formControlName=\"email\">\r\n    <p class=\"help-block\" *ngIf=\"email.errors && (email.dirty || email.touched)\">\r\n      <span *ngIf=\"email.errors.required\">Email is required</span>\r\n      <span *ngIf=\"email.errors.pattern\">Pattern \"[^ @]*@[^ @]*\" doesn't match</span>\r\n    </p>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{\r\n    'has-error': password.invalid && password.dirty, \r\n    'has-success': password.valid && password.dirty \r\n  }\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" formControlName=\"password\">\r\n    <p class=\"help-block\" *ngIf=\"password.errors && (password.dirty || password.touched)\">\r\n      <span *ngIf=\"password.errors.required\">Password is required</span>\r\n      <span *ngIf=\"password.errors.minlength\">\r\n        Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}\r\n        characters\r\n      </span>\r\n    </p>\r\n  </div>\r\n  <button type=\"submit\" class=\"btn btn-default\" [disabled]=\"myform.invalid\">Login</button>\r\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"signInWithGoogle()\">\r\n    <i class=\"fa fa-google\" aria-hidden=\"true\"></i>\r\n    Login with Google\r\n  </button>\r\n</form>\r\n<p></p>\r\n<p class=\"bg-danger\" *ngIf=\"error\">{{error}}</p>"
+module.exports = "<h3>Login form</h3>\r\n<form novalidate [formGroup]=\"myform\" (ngSubmit)=\"signInWithEmail()\">\r\n  <div class=\"form-group\" [ngClass]=\"{\r\n      'has-error': email.invalid && email.dirty, \r\n      'has-success': email.valid && email.dirty \r\n    }\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" formControlName=\"email\">\r\n    <p class=\"help-block\" *ngIf=\"email.errors && (email.dirty || email.touched)\">\r\n      <span *ngIf=\"email.errors.required\">Email is required</span>\r\n      <span *ngIf=\"email.errors.pattern\">Pattern \"[^ @]*@[^ @]*\" doesn't match</span>\r\n    </p>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{\r\n    'has-error': password.invalid && password.dirty, \r\n    'has-success': password.valid && password.dirty \r\n  }\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" formControlName=\"password\">\r\n    <p class=\"help-block\" *ngIf=\"password.errors && (password.dirty || password.touched)\">\r\n      <span *ngIf=\"password.errors.required\">Password is required</span>\r\n      <span *ngIf=\"password.errors.minlength\">\r\n        Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}\r\n        characters\r\n      </span>\r\n    </p>\r\n  </div>\r\n  <button type=\"submit\" class=\"btn btn-default\" [disabled]=\"myform.invalid\">Login</button>\r\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"signInWithGoogle()\">\r\n    <i class=\"fa fa-google\" aria-hidden=\"true\"></i>\r\n    Login with Google\r\n  </button>\r\n  <button type=\"button\" class=\"btn btn-default\" (click)=\"signInWithFacebook()\">\r\n    <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i>\r\n    Login with Facebook\r\n  </button>\r\n</form>\r\n<p></p>\r\n<p class=\"bg-danger\" *ngIf=\"error\">{{error}}</p>"
 
 /***/ }),
 
@@ -395,7 +395,7 @@ var LoginFormComponent = (function () {
                 .then(function (res) {
                 _this.myform.reset();
                 console.log(res, 'log-in  regular');
-                _this.router.navigate(['search', { term: 'nature' }]);
+                _this.router.navigate(['search'], { queryParams: { term: 'nature' } });
             })
                 .catch(function (err) {
                 console.log(err);
@@ -409,13 +409,22 @@ var LoginFormComponent = (function () {
         this.authService.signInWithGoogle()
             .then(function (res) {
             console.log(res, 'log-in with google');
-            _this.router.navigate(['search', { term: 'cars' }]);
+            _this.router.navigate(['search'], { queryParams: { term: 'cars' } });
         })
             .catch(function (err) {
             console.log(err);
             if (err.message)
                 _this.error = err.message;
         });
+    };
+    LoginFormComponent.prototype.signInWithFacebook = function () {
+        var _this = this;
+        this.authService.signInWithFacebook()
+            .then(function (res) {
+            console.log(res, 'log-in with facebook');
+            _this.router.navigate(['search'], { queryParams: { term: 'animals' } });
+        })
+            .catch(function (err) { return console.log(err); });
     };
     LoginFormComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -433,7 +442,7 @@ var LoginFormComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-form/search-form.component.css":
+/***/ "../../../../../src/app/search-page/search-form/search-form.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -451,14 +460,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-form/search-form.component.html":
+/***/ "../../../../../src/app/search-page/search-form/search-form.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<form class=\"form-inline pull-left\">\r\n  <div class=\"form-group\">\r\n    <input type=\"search\" class=\"form-control\" placeholder=\"Enter search string\" [formControl]=\"searchField\">\r\n  </div>\r\n</form>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-form/search-form.component.ts":
+/***/ "../../../../../src/app/search-page/search-form/search-form.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -490,18 +499,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SearchFormComponent = (function () {
     function SearchFormComponent(photosService, router, route) {
-        var _this = this;
         this.photosService = photosService;
         this.router = router;
         this.route = route;
         this.onSearchFinished = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
         this.changeLoadingState = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
-        this.route.params.subscribe(function (params) {
-            if (params['term']) {
-                _this.doSearch(params['term'], params['type'] || 'all');
-                _this.searchField.setValue(params['term']);
-            }
-        });
     }
     SearchFormComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -510,11 +512,17 @@ var SearchFormComponent = (function () {
             .debounceTime(1000)
             .distinctUntilChanged()
             .subscribe(function (value) { return _this.onSearch(value); });
+        this.route.queryParams.subscribe(function (params) {
+            if (params['term']) {
+                _this.doSearch(params['term'], params['type'] || 'all');
+                _this.searchField.setValue(params['term']);
+            }
+        });
     };
     SearchFormComponent.prototype.doSearch = function (term, type) {
         var _this = this;
         if (term) {
-            this.router.navigate(['search', { term: term, type: type }]);
+            this.router.navigate(['search'], { queryParams: { term: term, type: type } });
             this.changeLoadingState.emit(true);
             this.photosService.search(term, type)
                 .subscribe(function (value) {
@@ -524,7 +532,7 @@ var SearchFormComponent = (function () {
         }
     };
     SearchFormComponent.prototype.onSearch = function (term) {
-        this.router.navigate(['search', { term: term }]);
+        this.router.navigate(['search'], { queryParams: { term: term } });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* Output */])(),
@@ -537,8 +545,8 @@ var SearchFormComponent = (function () {
     SearchFormComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-search-form',
-            template: __webpack_require__("../../../../../src/app/search-form/search-form.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/search-form/search-form.component.css")]
+            template: __webpack_require__("../../../../../src/app/search-page/search-form/search-form.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/search-page/search-form/search-form.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__search_service__["a" /* SearchService */],
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */],
@@ -572,7 +580,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/search-page/search-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-search-form (onSearchFinished)=\"onSearchFinished($event)\" (changeLoadingState)=\"changeLoadingState($event)\">\r\n</app-search-form>\r\n<div class=\"pull-right\">\r\n  <p>Filters by type:\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'all'}\" [routerLink]=\"[{ term: term, type: 'all'}]\">all</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'photo'}\" [routerLink]=\"[{ term: term, type: 'photo' }]\">photos</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'illustration'}\" [routerLink]=\"[{ term: term, type: 'illustration' }]\">illustrations</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'vector'}\" [routerLink]=\"[{ term: term, type: 'vector' }]\">vector-graphics</button>\r\n  </p>\r\n</div>\r\n<br>\r\n<h3>Search results:</h3>\r\n<div class=\"text-center\">\r\n  <p class=\"lead\" *ngIf=\"loading\">Loading...</p>\r\n</div>\r\n<p class=\"bg-danger\" *ngIf=\"isNoResult\">No result found!</p>\r\n<app-search-result [results]=\"photos\"></app-search-result>"
+module.exports = "<app-search-form (onSearchFinished)=\"onSearchFinished($event)\" (changeLoadingState)=\"changeLoadingState($event)\">\r\n</app-search-form>\r\n<div class=\"pull-right\">\r\n  <p>Filters by type:\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'all'}\" [routerLink]=\"[]\" [queryParams]=\"{ term: term, type: 'all'}\">all</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'photo'}\" [routerLink]=\"[]\" [queryParams]=\"{ term: term, type: 'photo' }\">photos</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'illustration'}\" [routerLink]=\"[]\" [queryParams]=\"{ term: term, type: 'illustration' }\">illustrations</button>\r\n    <button class=\"btn btn-default\" [ngClass]=\"{'btn-primary': type === 'vector'}\" [routerLink]=\"[]\" [queryParams]=\"{ term: term, type: 'vector' }\">vector-graphics</button>\r\n  </p>\r\n</div>\r\n<br>\r\n<h3>Search results:</h3>\r\n<div class=\"text-center\">\r\n  <p class=\"lead\" *ngIf=\"loading\">Loading...</p>\r\n</div>\r\n<p class=\"bg-danger\" *ngIf=\"isNoResult\">No result found!</p>\r\n<app-search-result [results]=\"photos\"></app-search-result>"
 
 /***/ }),
 
@@ -603,7 +611,7 @@ var SearchPageComponent = (function () {
     }
     SearchPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params.subscribe(function (params) {
+        this.route.queryParams.subscribe(function (params) {
             if (params['term']) {
                 _this.term = params['term'];
             }
@@ -635,7 +643,7 @@ var SearchPageComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-result/search-result.component.css":
+/***/ "../../../../../src/app/search-page/search-result/search-result.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -653,14 +661,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-result/search-result.component.html":
+/***/ "../../../../../src/app/search-page/search-result/search-result.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<ul class=\"list-group\" *ngIf=\"results.length\">\r\n  <li class=\"list-group-item clearfix\" *ngFor=\"let item of results\">\r\n    <a class=\"pull-left\" href=\"{{item.pageURL}}\" target=\"_blank\">\r\n      <img class=\"photo\" src=\"{{item.previewURL}}\" alt=\"{{item.tags}}\" width=\"{{item.previewWidth}}\" height=\"{{item.previewHeight}}\">\r\n    </a>\r\n    <ul *ngFor=\"let tag of item.tags.split(',')\">\r\n      <li><a href=\"\" (click)=\"searchByTag(tag, $event)\">{{tag}}</a></li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n<p *ngIf=\"results.length\" class=\"text-center\">\r\n  <a href=\"https://pixabay.com/en/photos/?q={{term}}&image_type={{type}}\" target=\"_blank\">more photos</a>\r\n</p>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/search-result/search-result.component.ts":
+/***/ "../../../../../src/app/search-page/search-result/search-result.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -696,7 +704,7 @@ var SearchResultComponent = (function () {
     };
     SearchResultComponent.prototype.searchByTag = function (tag, event) {
         event.preventDefault();
-        this.router.navigate(['search', { term: tag }]);
+        this.router.navigate(['search'], { queryParams: { term: tag } });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('results'),
@@ -705,8 +713,8 @@ var SearchResultComponent = (function () {
     SearchResultComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-search-result',
-            template: __webpack_require__("../../../../../src/app/search-result/search-result.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/search-result/search-result.component.css")]
+            template: __webpack_require__("../../../../../src/app/search-page/search-result/search-result.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/search-page/search-result/search-result.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
@@ -880,6 +888,9 @@ var AuthService = (function () {
     };
     AuthService.prototype.signInWithGithub = function () {
         return this._firebaseAuth.auth.signInWithPopup(new __WEBPACK_IMPORTED_MODULE_3_firebase_app__["auth"].GithubAuthProvider());
+    };
+    AuthService.prototype.signInWithFacebook = function () {
+        return this._firebaseAuth.auth.signInWithPopup(new __WEBPACK_IMPORTED_MODULE_3_firebase_app__["auth"].FacebookAuthProvider());
     };
     AuthService.prototype.isLoggedIn = function () {
         if (this.userDetails == null) {
