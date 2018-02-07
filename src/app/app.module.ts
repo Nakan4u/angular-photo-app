@@ -6,10 +6,10 @@ import {Routes, RouterModule} from "@angular/router";
 
 
 import { AppComponent } from './app.component';
-import { SearchFormComponent } from './search-form/search-form.component';
+import { SearchFormComponent } from './search-page/search-form/search-form.component';
 import { SearchService } from './search.service';
 import { HeaderComponent } from './header/header.component';
-import { SearchResultComponent } from './search-result/search-result.component';
+import { SearchResultComponent } from './search-page/search-result/search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { LoginFormComponent } from './login-form/login-form.component';

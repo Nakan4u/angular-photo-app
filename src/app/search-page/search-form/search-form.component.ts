@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SearchService, SearchItem } from '../search.service';
+import { SearchService, SearchItem } from '../../search.service';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 
