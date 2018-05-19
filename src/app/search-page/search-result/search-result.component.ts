@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SearchItem } from '../../search.service';
+import { MainService, SearchItem } from '../../services/main.service';
 
 @Component({
   selector: 'app-search-result',
@@ -9,20 +9,22 @@ import { SearchItem } from '../../search.service';
 })
 export class SearchResultComponent implements OnInit {
   @Input('results') results: SearchItem[];
-  private term: string;
-  private type: string;
+  @Input('type') type: string;
+  private queryTerm: string;
+  private queryType: string;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private photosService: MainService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['term']) {
-        this.term = params['term'];
+        this.queryTerm = params['term'];
       }
       if (params['type']) {
-        this.type = params['type'];
+        this.queryType = params['type'];
       }
     })
   }
@@ -30,5 +32,17 @@ export class SearchResultComponent implements OnInit {
   searchByTag(tag: string, event) {
     event.preventDefault();
     this.router.navigate(['search'], { queryParams: { term: tag } });
+  }
+ 
+  addToFavorites(item) {
+    console.info('favorite item :', item);
+    this.photosService.saveItem(item);
+    item.isFavorite = true;
+  }
+
+  removeFromFavorites(item) {
+    console.info('removed item :', item);
+    this.photosService.removeItem(item);
+    item.isFavorite = false;
   }
 }

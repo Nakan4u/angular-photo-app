@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchItem } from '../search.service';
+import { SearchItem } from '../services/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

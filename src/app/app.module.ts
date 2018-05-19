@@ -4,15 +4,14 @@ import { HttpModule } from '@angular/http';
 import {ReactiveFormsModule, FormControl, FormsModule} from '@angular/forms';
 import {Routes, RouterModule} from "@angular/router";
 
-
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-page/search-form/search-form.component';
-import { SearchService } from './search.service';
 import { HeaderComponent } from './header/header.component';
 import { SearchResultComponent } from './search-page/search-result/search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { FavoritesPageComponent } from './favorites-page/favorites-page.component';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
@@ -21,6 +20,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { MainService } from './services/main.service';
+
 
 
 
@@ -31,6 +32,10 @@ const routes:Routes = [
 	{path: 'find', redirectTo: 'search'},
   {path: 'search', 
     component: SearchPageComponent, 
+    canActivate: [AuthGuard]
+  },
+  {path: 'favorites', 
+    component: FavoritesPageComponent, 
     canActivate: [AuthGuard]
   },
   {path: '**', component: HomePageComponent}
@@ -45,6 +50,7 @@ const routes:Routes = [
     HomePageComponent,
     SearchPageComponent,
     LoginFormComponent,
+    FavoritesPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,7 @@ const routes:Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [SearchService, AuthGuard, AuthService],
+  providers: [MainService, AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

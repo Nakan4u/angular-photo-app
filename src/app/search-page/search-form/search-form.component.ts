@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SearchService, SearchItem } from '../../search.service';
+import { MainService, SearchItem } from '../../services/main.service';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -19,7 +19,7 @@ export class SearchFormComponent implements OnInit {
   private searchField: FormControl;
 
   constructor(
-    private photosService: SearchService,
+    private photosService: MainService,
     private router: Router,
     private route: ActivatedRoute) {
   }

@@ -6,6 +6,14 @@
     <ul *ngFor="let tag of item.tags.split(',')">
       <li><a href="" (click)="searchByTag(tag, $event)">{{tag}}</a></li>
     </ul>
+    <button class="pull-right btn btn-primary" (click)="addToFavorites(item)" [disabled]="item.isFavorite" *ngIf="!type">
+      <i class="glyphicon glyphicon-plus"></i>
+      Add to favorites
+    </button>
+    <button class="pull-right btn btn-danger" (click)="removeFromFavorites(item)" *ngIf="type === 'favorites'">
+      <i class="glyphicon glyphicon-remove"></i>
+      Remove from favorites
+    </button>
   </li>
 </ul>
 <p *ngIf="results.length" class="text-center">

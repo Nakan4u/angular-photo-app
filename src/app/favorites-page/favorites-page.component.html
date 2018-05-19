@@ -1,0 +1,6 @@
+<h3>Favorites results:</h3>
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+<p class="bg-danger" *ngIf="isNoResult">No result found!</p>
+<app-search-result [results]="photos" [type]="'favorites'"></app-search-result>
