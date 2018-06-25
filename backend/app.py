@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, g, session, redirect, url_for, escape, request, Response, flash, abort
+from werkzeug.debug import DebuggedApplication
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -9,10 +10,17 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+app.debug = True
 
-# @app.errorhandler(400)
-# def errorhandler(error):
-#     response = jsonify({'message': error.description})
+# if app.debug:
+#     app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
+#     return app
+
+
+@app.errorhandler(400)
+def errorhandler(error):
+    response = jsonify({'message': error.description})
+    return response, 400
 
 @app.route('/')
 def hello():
@@ -82,38 +90,35 @@ def register():
     if request.method == "POST":
 
         # Ensure username was submitted
-        if not request.form.get("username"):
-            # return apology("must provide username", 400)
-            abort(400)
-            abort(Response('must provide username'))
+        if not request.values.get("username"):
             # abort(400, 'must provide username')
+            abort(400, 'must provide username')
 
         # Ensure password was submitted
-        elif not request.form.get("password"):
-            return apology("must provide password", 400)
+        elif not request.values.get("password"):
+            abort(400, 'must provide password')
 
         # Ensure confirm password was submitted
-        elif not request.form.get("confirmation"):
-            return apology("must provide confirm password", 400)
+        elif not request.values.get("confirmation"):
+            abort(400, 'must provide confirm password')
 
         # Ensure that password matched with confirm password
-        elif not request.form.get("password") == request.form.get("confirmation"):
-            return apology("passwords not matched", 400)
+        elif not request.values.get("password") == request.values.get("confirmation"):
+            abort(400, 'passwords not matched')
 
         # Encrypt password
-        password = request.form.get("password")
+        password = request.values.get("password")
         hash = generate_password_hash(password, 'sha256', 8)
 
         # Add new user to the DB if it not exist
-        result = query_db("SELECT name FROM users WHERE name = ?", [request.form.get("username")], one=True)
+        result = query_db("SELECT name FROM users WHERE name = ?", [request.values.get("username")], one=True)
 
         if result:
-            return apology("user with this name already exist", 400)
+            abort(400, 'user with this name already exist')
+            
         else:
-            result = query_db("INSERT INTO users (name, hash) VALUES(?, ?)", [request.form.get("username"), hash])
-
+            result = query_db("INSERT INTO users (name, hash) VALUES(?, ?)", [request.values.get("username"), hash], comit=True)
             flash("User created!")
-            # return redirect("/")
             return "User created!"
 
     else:
