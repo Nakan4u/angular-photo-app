@@ -12,10 +12,6 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.debug = True
 
-# if app.debug:
-#     app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
-#     return app
-
 
 @app.errorhandler(400)
 def errorhandler(error):
@@ -24,25 +20,10 @@ def errorhandler(error):
 
 @app.route('/')
 def hello():
-    session['user_id'] = 'Nakan'
-    # return jsonify({'text':'Hello World!'})
-    
-    # users = query_db("SELECT * from 'users'")
-    users = query_db("SELECT * FROM users WHERE name = ?", ['admin'])
-    return jsonify(users)
+    return 'Hello World!'
 
-# TODO: add sesion when we login with one of existing user;
-# 2) add hash generator for password
-@app.route('/login')
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    if 'user_id' in session:
-        user_id = session['user_id']
-        return 'Hello' + user_id
-    
-    return 'You are not logged in'
-
-@app.route("/login2", methods=["GET", "POST"])
-def login2():
     """Log user in"""
 
     # Forget any user_id
@@ -52,35 +33,38 @@ def login2():
     if request.method == "POST":
 
         # Ensure username was submitted
-        if not request.form.get("username"):
-            return apology("must provide username", 403)
+        if not request.values.get("username"):
+            abort(400, 'must provide username')
 
         # Ensure password was submitted
-        elif not request.form.get("password"):
-            return apology("must provide password", 403)
+        elif not request.values.get("password"):
+            abort(400, 'must provide password')
 
         # Query database for username
-        rows = query_db("SELECT * FROM users WHERE name = ?", [request.form.get("username")])
+        row = query_db("SELECT * FROM users WHERE name = ?", [request.values.get("username")], one=True)
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+        if not row or not check_password_hash(row["hash"], request.values.get("password")):
+            abort(400, 'invalid username and/or password')
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = row["id"]
 
         # Redirect user to home page
-        return redirect("/")
+        # return redirect("/")
+        return "Login success!"
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
-        return redirect(url_for('login'))
+        # return redirect(url_for('login'))
+        return "login page"
 
 @app.route('/logout')
 def logout():
    # remove the user_id from the session if it is there
    session.pop('user_id', None)
-   return redirect(url_for('login'))
+   # return redirect(url_for('login'))
+   return "logout success!"
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -127,8 +111,9 @@ def register():
 
 @app.route('/dashboard')
 @login_required
-def test():
+def dashboard():
     return 'user dashboard'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
