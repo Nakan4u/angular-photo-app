@@ -109,7 +109,7 @@ def register():
         # return render_template("register.html")
         return 'register page'
 
-@app.route('/favorites', methods=["GET", "PUT", "DELETE"])
+@app.route('/favorites', methods=["GET", "POST"])
 @login_required
 def favorites():
     if request.method == "GET":
@@ -121,26 +121,24 @@ def favorites():
         else:
             return [] # no photos yet
 
-    if request.method == "PUT":
+    if request.method == "POST" and request.values.get("add"):
         # insert photo to the colection of favorites photos
-        photoId = request.values.get("photoId")
+        photoId = request.values.get("add")
         if not photoId:
             abort(400, 'no favorite provided')
         
         result = query_db("INSERT INTO photos (photoId, userId) VALUES (?, ?)", [photoId, session["user_id"]], comit=True)
-        if not result:
-            abort(400, 'proto not added.')
+        flash('favorite added!')
         return 'favorite added!'
 
-    if request.method == "DELETE":
+    if request.method == "POST" and request.values.get("remove"):
         # delete photo from the colection of favorites photos
-        photoId = request.values.get("photoId")
+        photoId = request.values.get("remove")
         if not photoId:
             abort(400, 'no favorite provided')
 
         result = query_db("DELETE FROM photos WHERE photoId = ?", [photoId], comit=True)
-        if not result:
-            abort(400, 'photo not deleted!')
+        flash('photo deleted!')
         return 'photo deleted from the list'
 
 
