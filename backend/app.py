@@ -33,26 +33,28 @@ def login():
     if request.method == "POST":
 
         # Ensure username was submitted
-        if not request.values.get("username"):
+        if not request.json["username"]:
             abort(400, 'must provide username')
 
         # Ensure password was submitted
-        elif not request.values.get("password"):
+        elif not request.json["password"]:
             abort(400, 'must provide password')
 
         # Query database for username
-        row = query_db("SELECT * FROM users WHERE name = ?", [request.values.get("username")], one=True)
+        row = query_db("SELECT * FROM users WHERE name = ?", [request.json["username"]], one=True)
 
         # Ensure username exists and password is correct
-        if not row or not check_password_hash(row["hash"], request.values.get("password")):
+        if not row or not check_password_hash(row["hash"], request.json["password"]):
             abort(400, 'invalid username and/or password')
+            status = False
 
         # Remember which user has logged in
         session["user_id"] = row["id"]
+        status = True
 
         # Redirect user to home page
         # return redirect("/")
-        return "Login success!"
+        return jsonify({'result': status})
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -64,7 +66,7 @@ def logout():
    # remove the user_id from the session if it is there
    session.pop('user_id', None)
    # return redirect(url_for('login'))
-   return "logout success!"
+   return jsonify({'result': 'success'})
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -99,11 +101,15 @@ def register():
 
         if result:
             abort(400, 'user with this name already exist')
+            status = 'user with this name already exist'
             
         else:
             result = query_db("INSERT INTO users (name, hash) VALUES(?, ?)", [request.values.get("username"), hash], comit=True)
             flash("User created!")
-            return "User created!"
+            # return "User created!"
+            status = 'success'
+            
+        return jsonify({'result': status})
 
     else:
         # return render_template("register.html")

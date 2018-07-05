@@ -19,6 +19,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
+import { Auth2Service } from './services/auth2.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { MainService } from './services/main.service';
 
@@ -62,7 +63,7 @@ const routes:Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [MainService, AuthGuard, AuthService],
+  providers: [MainService, AuthGuard, AuthService, Auth2Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

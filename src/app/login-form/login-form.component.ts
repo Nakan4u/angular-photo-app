@@ -9,6 +9,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Auth2Service } from '../services/auth2.service';
 
 @Component({
   selector: 'app-login-form',
@@ -23,6 +24,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private auth2Service: Auth2Service,
     private router: Router) { }
 
   ngOnInit() {
@@ -46,6 +48,22 @@ export class LoginFormComponent implements OnInit {
       email: this.email,
       password: this.password
     });
+  }
+
+  signIn() {
+    if (this.myform.valid) {
+      this.auth2Service.login(this.email.value, this.password.value)
+        .then((res) => {
+          this.myform.reset();
+          console.log(res, 'log-in  regular');
+          this.router.navigate(['search'], { queryParams: { term: 'nature' } });
+        })
+        .catch(err => {
+          console.log(err);
+          if (err.message)
+            this.error = err.message;
+        });
+    }
   }
 
   signInWithEmail() {

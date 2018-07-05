@@ -1,5 +1,5 @@
 <h3>Login form</h3>
-<form novalidate [formGroup]="myform" (ngSubmit)="signInWithEmail()">
+<form novalidate [formGroup]="myform" (ngSubmit)="signIn()">
   <div class="form-group" [ngClass]="{
       'has-error': email.invalid && email.dirty, 
       'has-success': email.valid && email.dirty 
