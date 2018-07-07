@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { AuthService }  from '../services/auth.service';
+import { Auth2Service }  from '../services/auth2.service';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +14,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,) { }
+    private auth2Service: Auth2Service,) { }
 
   ngOnInit() {
-    this.authService.user.subscribe(user => {
+    this.auth2Service.user.subscribe(user => {
       this.userName = user && user.displayName || 'noName';
       this.isUserLoggedIn = !!user
     })
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   logOut(event) {
     event.preventDefault();
     if (window.confirm("Are you sure?")) {
-      this.authService.logout();
+      this.auth2Service.logout();
       this.router.navigate(['login']);
     }
   }
