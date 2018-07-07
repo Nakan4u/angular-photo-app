@@ -41,20 +41,20 @@ def login():
             abort(400, 'must provide password')
 
         # Query database for username
-        row = query_db("SELECT * FROM users WHERE name = ?", [request.json["username"]], one=True)
+        result = query_db("SELECT * FROM users WHERE name = ?", [request.json["username"]], one=True)
 
         # Ensure username exists and password is correct
-        if not row or not check_password_hash(row["hash"], request.json["password"]):
+        if not result or not check_password_hash(result["hash"], request.json["password"]):
             abort(400, 'invalid username and/or password')
             status = False
 
         # Remember which user has logged in
-        session["user_id"] = row["id"]
+        session["user_id"] = result["id"]
         status = True
 
         # Redirect user to home page
         # return redirect("/")
-        return jsonify({'result': status})
+        return jsonify({'result': status, 'displayName': result["name"]})
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:

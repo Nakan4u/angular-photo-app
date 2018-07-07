@@ -9,7 +9,7 @@ export class Auth2Service {
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
   private userDetails = null;
 
-  public user = new BehaviorSubject<boolean>(this.userDetails);
+  public user = new BehaviorSubject<any>(this.userDetails);
 
   constructor(private http: Http) {}
 
@@ -29,8 +29,9 @@ export class Auth2Service {
     }
     return this.http.post(url, sendData, {headers: this.headers}).toPromise()
       .then((res) => {
-        this.userDetails = true
-        this.user.next(true);
+        let userData = res.json();
+        this.userDetails = userData;
+        this.user.next(userData);
         return true;
       })
       .catch((err) => {
