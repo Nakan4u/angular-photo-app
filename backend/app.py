@@ -76,35 +76,35 @@ def register():
     if request.method == "POST":
 
         # Ensure username was submitted
-        if not request.values.get("username"):
+        if not request.json["username"]:
             # abort(400, 'must provide username')
             abort(400, 'must provide username')
 
         # Ensure password was submitted
-        elif not request.values.get("password"):
+        elif not request.json["password"]:
             abort(400, 'must provide password')
 
         # Ensure confirm password was submitted
-        elif not request.values.get("confirmation"):
+        elif not request.json["confirmation"]:
             abort(400, 'must provide confirm password')
 
         # Ensure that password matched with confirm password
-        elif not request.values.get("password") == request.values.get("confirmation"):
+        elif not request.json["password"] == request.json["confirmation"]:
             abort(400, 'passwords not matched')
 
         # Encrypt password
-        password = request.values.get("password")
+        password = request.json["password"]
         hash = generate_password_hash(password, 'sha256', 8)
 
         # Add new user to the DB if it not exist
-        result = query_db("SELECT name FROM users WHERE name = ?", [request.values.get("username")], one=True)
+        result = query_db("SELECT name FROM users WHERE name = ?", [request.json["username"]], one=True)
 
         if result:
             abort(400, 'user with this name already exist')
             status = 'user with this name already exist'
             
         else:
-            result = query_db("INSERT INTO users (name, hash) VALUES(?, ?)", [request.values.get("username"), hash], comit=True)
+            result = query_db("INSERT INTO users (name, hash) VALUES(?, ?)", [request.json["username"], hash], comit=True)
             flash("User created!")
             # return "User created!"
             status = 'success'

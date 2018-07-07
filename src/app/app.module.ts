@@ -12,6 +12,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FavoritesPageComponent } from './favorites-page/favorites-page.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
@@ -26,10 +27,12 @@ import { MainService } from './services/main.service';
 
 
 
+
 const routes:Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'}, 
   {path: 'home', component: HomePageComponent},
   {path: 'login', component: LoginFormComponent},
+  {path: 'register', component: RegisterFormComponent},
 	{path: 'find', redirectTo: 'search'},
   {path: 'search', 
     component: SearchPageComponent, 
@@ -52,6 +55,7 @@ const routes:Routes = [
     SearchPageComponent,
     LoginFormComponent,
     FavoritesPageComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,

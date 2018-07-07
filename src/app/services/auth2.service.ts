@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class Auth2Service {
   private BASE_URL: string = 'http://127.0.0.1:5000';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
   private userDetails = JSON.parse(sessionStorage.getItem('userData')) || null;
-
+  
   public user = new BehaviorSubject<any>(this.userDetails);
 
   constructor(private http: Http) {}
@@ -60,5 +60,16 @@ export class Auth2Service {
         sessionStorage.clear();
         throw new Error('failed to logout')
       });
+  }
+
+  register(email, password, confirmation): Promise<any> {
+    let url: string = `${this.BASE_URL}/register`;
+    let sendData = {
+      'username': email,
+      password,
+      confirmation
+    }
+    
+    return this.http.post(url, sendData, {headers: this.headers}).toPromise();
   }
 }
