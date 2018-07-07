@@ -7,14 +7,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class Auth2Service {
   private BASE_URL: string = 'http://127.0.0.1:5000';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
-  private userDetails = null;
+  private userDetails = JSON.parse(sessionStorage.getItem('userData')) || null;
 
   public user = new BehaviorSubject<any>(this.userDetails);
 
   constructor(private http: Http) {}
 
   isLoggedIn() {
-    if (this.userDetails == null) {
+    if (!this.userDetails) {
       return false;
     } else {
       return true;
@@ -30,13 +30,16 @@ export class Auth2Service {
     return this.http.post(url, sendData, {headers: this.headers}).toPromise()
       .then((res) => {
         let userData = res.json();
+
         this.userDetails = userData;
         this.user.next(userData);
+        sessionStorage.setItem('userData', res.text());
         return true;
       })
       .catch((err) => {
         this.userDetails = false;
         this.user.next(false);
+        sessionStorage.clear();
         throw new Error('failed to login')
       });
   }
@@ -48,11 +51,13 @@ export class Auth2Service {
       .then((res) => {
         this.userDetails = false;
         this.user.next(false);
+        sessionStorage.clear();
         return true;
       })
       .catch((err) => {
         this.userDetails = false;
         this.user.next(false);
+        sessionStorage.clear();
         throw new Error('failed to logout')
       });
   }
