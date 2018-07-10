@@ -127,9 +127,9 @@ def favorites():
         else:
             return [] # no photos yet
 
-    if request.method == "POST" and request.values.get("add"):
+    if request.method == "POST":
         # insert photo to the colection of favorites photos
-        photoId = request.values.get("add")
+        photoId = request.json["photoId"]
         if not photoId:
             abort(400, 'no favorite provided')
         
@@ -137,16 +137,20 @@ def favorites():
         flash('favorite added!')
         return 'favorite added!'
 
-    if request.method == "POST" and request.values.get("remove"):
+
+@app.route('/favorites/delete', methods=["POST"])
+@login_required
+def favoritesDelete():
+
+    if request.method == "POST":
         # delete photo from the colection of favorites photos
-        photoId = request.values.get("remove")
+        photoId = request.json["photoId"]
         if not photoId:
             abort(400, 'no favorite provided')
 
         result = query_db("DELETE FROM photos WHERE photoId = ?", [photoId], comit=True)
         flash('photo deleted!')
         return 'photo deleted from the list'
-
 
 if __name__ == '__main__':
     app.run(debug=True)
