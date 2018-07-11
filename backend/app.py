@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, g, session, redirect, url_for, escape, request, Response, flash, abort
+from flask_cors import CORS, cross_origin
 from werkzeug.debug import DebuggedApplication
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -11,7 +12,7 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.debug = True
-
+CORS(app, support_credentials=True)
 
 @app.errorhandler(400)
 def errorhandler(error):
@@ -23,9 +24,9 @@ def hello():
     return 'Hello World!'
 
 @app.route("/login", methods=["GET", "POST"])
+@cross_origin(supports_credentials=True)
 def login():
     """Log user in"""
-
     # Forget any user_id
     session.clear()
 
@@ -116,6 +117,7 @@ def register():
         return 'register page'
 
 @app.route('/favorites', methods=["GET", "POST"])
+@cross_origin(supports_credentials=True)
 @login_required
 def favorites():
     if request.method == "GET":
@@ -129,16 +131,25 @@ def favorites():
 
     if request.method == "POST":
         # insert photo to the colection of favorites photos
-        photoId = request.json["photoId"]
-        if not photoId:
+        photo = {
+            'id': request.json["id"],
+            'pageURL': request.json["pageURL"],
+            'previewURL': request.json["previewURL"],
+            'previewHeight': request.json["previewHeight"],
+            'previewWidth': request.json["previewWidth"],
+            'tags': request.json["tags"]        
+        }
+
+        if not photo:
             abort(400, 'no favorite provided')
         
-        result = query_db("INSERT INTO photos (photoId, userId) VALUES (?, ?)", [photoId, session["user_id"]], comit=True)
-        flash('favorite added!')
-        return 'favorite added!'
+        result = query_db("INSERT INTO photos (photoId, userId, pageURL, previewURL, previewHeight, previewWidth, tags) VALUES (?, ?, ?, ?, ?, ?, ?)", 
+            [photo['id'], session["user_id"], photo['pageURL'], photo['previewURL'], photo['previewHeight'], photo['previewWidth'], photo['tags']], comit=True)
 
+        return 'photo added'
 
 @app.route('/favorites/delete', methods=["POST"])
+@cross_origin(supports_credentials=True)
 @login_required
 def favoritesDelete():
 
@@ -149,8 +160,8 @@ def favoritesDelete():
             abort(400, 'no favorite provided')
 
         result = query_db("DELETE FROM photos WHERE photoId = ?", [photoId], comit=True)
-        flash('photo deleted!')
-        return 'photo deleted from the list'
+
+        return 'photo deleted'
 
 if __name__ == '__main__':
     app.run(debug=True)
