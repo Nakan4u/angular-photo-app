@@ -16,6 +16,6 @@
     </button>
   </li>
 </ul>
-<p *ngIf="results.length" class="text-center">
+<p *ngIf="results.length && type !== 'favorites'" class="text-center">
   <a href="https://pixabay.com/en/photos/?q={{term}}&image_type={{type}}" target="_blank">more photos</a>
 </p>

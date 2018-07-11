@@ -7,7 +7,9 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class MainService {
   private API_KEY: string = '7689962-059ef4a23ea05886a72c3a85d';
-  apiRoot: string = "https://pixabay.com/api/?key=" + this.API_KEY;
+  apiPhotos: string = "https://pixabay.com/api/?key=" + this.API_KEY;
+  apiEndpoint: string = "http://127.0.0.1:5000";
+  private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   results: SearchItem[];
   favorites: SearchItem[];
   loading: boolean;
@@ -22,9 +24,9 @@ export class MainService {
     let params = new URLSearchParams();
     params.set('q', term);
     params.set('per_page', '10');
-    if (type) params.set('image_type', type); 
+    if (type) params.set('image_type', type);
 
-    return this.http.get(this.apiRoot, { params })
+    return this.http.get(this.apiPhotos, { params })
       .map(res => {
         return res.json().hits.map(item => {
           return new SearchItem(
@@ -39,31 +41,54 @@ export class MainService {
       });
   }
 
-  saveItem(item: SearchItem) {
+  saveItem(item: SearchItem): any {
     let index = this.searchItemOnTheList(item);
-    debugger;
+    let url: string = `${this.apiEndpoint}/favorites`;
+
     // if item not found than add it to the list
     if (index < 0) {
-      this.favorites.push(item);
+      return this.http.post(url, item, { headers: this.headers, withCredentials: true }).toPromise()
+        .then(res => {
+          this.favorites.push(item);
+        })
+        .catch(err => {
+          console.error('error with a favorite item', err);
+        });
     }
   }
 
   removeItem(item: SearchItem) {
     let index = this.searchItemOnTheList(item);
+    let url: string = `${this.apiEndpoint}/favorites/delete`;
     // if item found than remove it from the list
+
     if (index > 0) {
-      this.favorites.splice(index, 1);
+      return this.http.post(url, {"photoId": item['photoId']}, { headers: this.headers, withCredentials: true }).toPromise()
+        .then(res => {
+          console.info(res);
+          this.favorites.splice(index, 1);
+        })
+        .catch(err => {
+          console.error('error with delete photo', err);
+        });
     }
   }
 
   private searchItemOnTheList(item): number {
     return this.favorites.findIndex(favorite => {
-      return favorite.id === item.id;
+      return favorite['photoId'] === item.id || favorite.id === item.id;
     });
   }
 
-  getFavorites() {
-    return this.favorites;
+  getFavorites(): Observable<SearchItem[]> {
+    let url: string = `${this.apiEndpoint}/favorites`;
+
+    return this.http.get(url, { headers: this.headers, withCredentials: true })
+      .map(res => {
+        console.log("result", res.json());
+        this.favorites = res.json();
+        return this.favorites;
+      });
   }
 }
 

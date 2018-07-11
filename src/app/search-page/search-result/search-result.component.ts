@@ -27,6 +27,10 @@ export class SearchResultComponent implements OnInit {
         this.queryType = params['type'];
       }
     })
+
+    if (!this.type) { // get favorites for search page;
+      this.photosService.getFavorites().subscribe();
+    }
   }
 
   searchByTag(tag: string, event) {

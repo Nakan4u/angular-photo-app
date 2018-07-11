@@ -27,7 +27,7 @@ export class Auth2Service {
       'username': email,
       password
     }
-    return this.http.post(url, sendData, {headers: this.headers}).toPromise()
+    return this.http.post(url, sendData, {headers: this.headers, withCredentials: true}).toPromise()
       .then((res) => {
         let userData = res.json();
 

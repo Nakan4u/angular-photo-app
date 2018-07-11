@@ -16,12 +16,14 @@ export class FavoritesPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let results = this.photosService.getFavorites();
+    this.photosService.getFavorites()
+      .subscribe(results => {
+        this.photos = results;
+        this.isNoResult = !results.length;
+      });
 
-    this.photos = results;
-    this.isNoResult = !results.length;
   }
-  
+
   changeLoadingState(value: boolean) {
     this.loading = value;
   }
