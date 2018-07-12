@@ -4,7 +4,7 @@ from werkzeug.debug import DebuggedApplication
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import query_db, login_required, apology
+from helpers import query_db, login_required
 
 import os
 
