@@ -55,11 +55,10 @@ export class LoginFormComponent implements OnInit {
       this.auth2Service.login(this.email.value, this.password.value)
         .then((res) => {
           this.myform.reset();
-          console.log(res, 'log-in  custom');
           this.router.navigate(['search'], { queryParams: { term: 'nature' } });
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
           if (err.message)
             this.error = err.message;
         });

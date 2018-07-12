@@ -39,13 +39,11 @@ export class SearchResultComponent implements OnInit {
   }
  
   addToFavorites(item) {
-    console.info('favorite item :', item);
     this.photosService.saveItem(item);
     item.isFavorite = true;
   }
 
   removeFromFavorites(item) {
-    console.info('removed item :', item);
     this.photosService.removeItem(item);
     item.isFavorite = false;
   }

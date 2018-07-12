@@ -58,7 +58,6 @@ export class RegisterFormComponent implements OnInit {
     if (this.registerForm.valid) {
       this.auth2Service.register(this.email.value, this.password.value, this.confirmation.value)
         .then((res) => {
-          console.info(res, 'register success!');
           return this.auth2Service.login(this.email.value, this.password.value);
         })
         .then((res) => {

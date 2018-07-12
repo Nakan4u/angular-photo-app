@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-// import 'rxjs/add/operator/map';
+
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/throw';
 import "rxjs/add/operator/catch";
@@ -79,7 +78,6 @@ export class MainService {
     if (index > 0) {
       return this.http.post(url, { "photoId": item['photoId'] }, { headers: this.headers, withCredentials: true }).toPromise()
         .then(res => {
-          console.info(res);
           this.favorites.splice(index, 1);
         })
         .catch(err => {
@@ -100,7 +98,6 @@ export class MainService {
 
     return this.http.get(url, { headers: this.headers, withCredentials: true })
       .map(res => {
-        console.log("result", res.json());
         this.favorites = res.json();
         return this.favorites;
       })

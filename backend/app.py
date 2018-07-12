@@ -124,10 +124,10 @@ def favorites():
         # return colection of favorites photos
         result = query_db("SELECT * FROM photos WHERE userId = ?", [session["user_id"]])
 
-        if len(result):
-            return jsonify(result)
-        else:
-            return [] # no photos yet
+        if not len(result):
+            result = [] # no photos yet
+        
+        return jsonify(result)
 
     if request.method == "POST":
         # insert photo to the colection of favorites photos

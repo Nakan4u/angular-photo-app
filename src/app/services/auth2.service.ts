@@ -30,7 +30,6 @@ export class Auth2Service {
     return this.http.post(url, sendData, {headers: this.headers, withCredentials: true}).toPromise()
       .then((res) => {
         let userData = res.json();
-
         this.userDetails = userData;
         this.user.next(userData);
         sessionStorage.setItem('userData', res.text());

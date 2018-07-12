@@ -1,5 +1,8 @@
 <p>
-  Simply app to search nice photos. Please
+  Simply app to search nice photos.
+</p>
+<p *ngIf="!auth2Service.isLoggedIn()">
+  Please
   <a [routerLink]="['/login']">login</a>
   or 
   <a [routerLink]="['/register']">register</a>
