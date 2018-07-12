@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
 import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { catchError, map, tap } from 'rxjs/operators';
+// import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/throw';
+import "rxjs/add/operator/catch";
+
+import { Auth2Service } from '../services/auth2.service';
 
 @Injectable()
 export class MainService {
@@ -14,7 +20,10 @@ export class MainService {
   favorites: SearchItem[];
   loading: boolean;
 
-  constructor(private http: Http) {
+  constructor(
+    private router: Router,
+    private http: Http,
+    private auth2Service: Auth2Service) {
     this.results = [];
     this.favorites = [];
     this.loading = false;
@@ -38,6 +47,10 @@ export class MainService {
             item.tags
           );
         });
+      })
+      .catch((err) => {
+        this.errorHandler(err);
+        return Observable.throw(err);
       });
   }
 
@@ -53,6 +66,7 @@ export class MainService {
         })
         .catch(err => {
           console.error('error with a favorite item', err);
+          this.errorHandler(err);
         });
     }
   }
@@ -63,13 +77,14 @@ export class MainService {
     // if item found than remove it from the list
 
     if (index > 0) {
-      return this.http.post(url, {"photoId": item['photoId']}, { headers: this.headers, withCredentials: true }).toPromise()
+      return this.http.post(url, { "photoId": item['photoId'] }, { headers: this.headers, withCredentials: true }).toPromise()
         .then(res => {
           console.info(res);
           this.favorites.splice(index, 1);
         })
         .catch(err => {
           console.error('error with delete photo', err);
+          this.errorHandler(err);
         });
     }
   }
@@ -80,7 +95,7 @@ export class MainService {
     });
   }
 
-  getFavorites(): Observable<SearchItem[]> {
+  getFavorites(): Observable<any> {
     let url: string = `${this.apiEndpoint}/favorites`;
 
     return this.http.get(url, { headers: this.headers, withCredentials: true })
@@ -88,7 +103,17 @@ export class MainService {
         console.log("result", res.json());
         this.favorites = res.json();
         return this.favorites;
+      })
+      .catch((err) => {
+        this.errorHandler(err);
+        return Observable.throw(err);
       });
+  }
+
+  private errorHandler(error) {
+    sessionStorage.clear();
+    this.auth2Service.user.next(false); // logout user
+    this.router.navigate(['login']);
   }
 }
 
