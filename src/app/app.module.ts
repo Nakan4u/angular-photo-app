@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import {ReactiveFormsModule, FormControl, FormsModule} from '@angular/forms';
 import {Routes, RouterModule} from "@angular/router";
+import { NotifierModule } from 'angular-notifier';
 
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-page/search-form/search-form.component';
@@ -65,7 +66,8 @@ const routes:Routes = [
     RouterModule.forRoot(routes, {useHash: true}),
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NotifierModule
   ],
   providers: [MainService, AuthGuard, AuthService, Auth2Service],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { NotifierService } from 'angular-notifier';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -25,7 +26,9 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private auth2Service: Auth2Service,
-    private router: Router) { }
+    private router: Router,
+    private notifier: NotifierService
+  ) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -56,11 +59,13 @@ export class LoginFormComponent implements OnInit {
         .then((res) => {
           this.myform.reset();
           this.router.navigate(['search'], { queryParams: { term: 'nature' } });
+          this.notifier.notify( 'success', 'Login success!' );
         })
         .catch(err => {
           console.error(err);
           if (err.message)
             this.error = err.message;
+            this.notifier.notify( 'error', err.message );
         });
     }
   }

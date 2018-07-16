@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
+import { NotifierService } from 'angular-notifier';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/throw';
@@ -22,7 +23,9 @@ export class MainService {
   constructor(
     private router: Router,
     private http: Http,
-    private auth2Service: Auth2Service) {
+    private auth2Service: Auth2Service,
+    private notifier: NotifierService
+  ) {
     this.results = [];
     this.favorites = [];
     this.loading = false;
@@ -62,9 +65,11 @@ export class MainService {
       return this.http.post(url, item, { headers: this.headers, withCredentials: true }).toPromise()
         .then(res => {
           this.favorites.push(item);
+          this.notifier.notify( 'success', 'Favorite added!' );
         })
         .catch(err => {
           console.error('error with a favorite item', err);
+          this.notifier.notify( 'error', 'Favorite doesn\'t added!' );
           this.errorHandler(err);
         });
     }
@@ -79,9 +84,11 @@ export class MainService {
       return this.http.post(url, { "photoId": item['photoId'] }, { headers: this.headers, withCredentials: true }).toPromise()
         .then(res => {
           this.favorites.splice(index, 1);
+          this.notifier.notify( 'error', 'Favorite removed!' );
         })
         .catch(err => {
           console.error('error with delete photo', err);
+          this.notifier.notify( 'error', 'Favorite doesn\'t deleted!' );
           this.errorHandler(err);
         });
     }
