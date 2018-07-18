@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class Auth2Service {
-  private BASE_URL: string = 'http://127.0.0.1:5000';
+  private BASE_URL: string = 'http://127.0.0.1:5000/api';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
   private userDetails = JSON.parse(sessionStorage.getItem('userData')) || null;
   

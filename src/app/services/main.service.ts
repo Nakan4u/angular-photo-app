@@ -14,7 +14,7 @@ import { Auth2Service } from '../services/auth2.service';
 export class MainService {
   private API_KEY: string = '7689962-059ef4a23ea05886a72c3a85d';
   apiPhotos: string = "https://pixabay.com/api/?key=" + this.API_KEY;
-  apiEndpoint: string = "http://127.0.0.1:5000";
+  apiEndpoint: string = "http://127.0.0.1:5000/api";
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
   results: SearchItem[];
   favorites: SearchItem[];

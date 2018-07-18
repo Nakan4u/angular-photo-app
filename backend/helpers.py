@@ -2,11 +2,14 @@ from flask import Flask, g, redirect, render_template, request, session, abort
 from functools import wraps
 
 import sqlite3
+from os import path
+
+ROOT = path.dirname(path.realpath(__file__))
 
 app = Flask(__name__)
 
 # db helpers
-DATABASE = './test.db'
+DATABASE = path.join(ROOT, 'test.db')
 
 def get_db():
     db = getattr(g, '_database', None)

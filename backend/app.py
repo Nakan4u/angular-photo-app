@@ -14,16 +14,18 @@ app.secret_key = os.urandom(24)
 app.debug = True
 CORS(app, support_credentials=True)
 
+api_url_prefix = '/api'
+
 @app.errorhandler(400)
 def errorhandler(error):
     response = jsonify({'message': error.description})
     return response, 400
 
-@app.route('/')
+@app.route(api_url_prefix + '/')
 def hello():
     return 'Hello World!'
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route(api_url_prefix + "/login", methods=["GET", "POST"])
 @cross_origin(supports_credentials=True)
 def login():
     """Log user in"""
@@ -62,14 +64,14 @@ def login():
         # return redirect(url_for('login'))
         return "login page"
 
-@app.route('/logout')
+@app.route(api_url_prefix + '/logout')
 def logout():
    # remove the user_id from the session if it is there
    session.pop('user_id', None)
    # return redirect(url_for('login'))
    return jsonify({'result': 'success'})
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route(api_url_prefix + "/register", methods=["GET", "POST"])
 def register():
     """Register user"""
 
@@ -116,7 +118,7 @@ def register():
         # return render_template("register.html")
         return 'register page'
 
-@app.route('/favorites', methods=["GET", "POST"])
+@app.route(api_url_prefix + '/favorites', methods=["GET", "POST"])
 @cross_origin(supports_credentials=True)
 @login_required
 def favorites():
@@ -148,7 +150,7 @@ def favorites():
 
         return 'photo added'
 
-@app.route('/favorites/delete', methods=["POST"])
+@app.route(api_url_prefix + '/favorites/delete', methods=["POST"])
 @cross_origin(supports_credentials=True)
 @login_required
 def favoritesDelete():
